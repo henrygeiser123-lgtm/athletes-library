@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="The Release Kit: silicone cups, a steel scraper, a peanut ball and a stretch strap in one bag, with a printed guide and a 15-minute recovery routine for athletes.">
+<meta name="description" content="The Release Kit: silicone cups, a steel scraper, a peanut ball and a stretch strap in one bag, with pocket cards, a full online guide and a 15-minute recovery routine for athletes.">
 <link rel="icon" type="image/svg+xml" href="release-kit-logo.svg">
 <title>The Athlete's Library</title>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
@@ -311,16 +311,48 @@ details p { padding-bottom: 16px; max-width: 42em; }
 /* Sticky guide walk-through */
 .pp-guide { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: clamp(32px, 6vw, 80px); margin-top: 48px; }
 .pp-guide-stick { position: sticky; top: 110px; align-self: start; display: flex; justify-content: center; }
-.pp-booklet { width: min(380px, 100%); aspect-ratio: 3 / 4; background: #FBF8F1; color: #1A2133; border-radius: 6px 14px 14px 6px; box-shadow: 0 1px 0 #E3DCCB, 0 24px 48px -18px rgba(20, 30, 60, 0.35), inset 10px 0 0 #EFE8D8; padding: 34px 30px 30px 40px; display: flex; flex-direction: column; gap: 12px; position: relative; }
-.pp-booklet .bk-head { display: flex; justify-content: space-between; font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: #8A7F66; }
-.pp-booklet h3 { color: #1E2B48; font-size: 1.5rem; }
-.pp-booklet p, .pp-booklet li { font-size: 0.95rem; line-height: 1.5; color: #2D3650; }
-.pp-booklet ul { margin: 0; padding-left: 1.1em; display: flex; flex-direction: column; gap: 4px; }
-.pp-booklet .bk-foot { margin-top: auto; font-family: var(--font-display); font-size: 0.7rem; letter-spacing: 0.16em; color: #8A7F66; text-align: right; }
-.pp-booklet .bk-qr { width: 72px; height: 72px; background:
+.pp-booklet { width: 100%; aspect-ratio: 5 / 3; color: #1A2133; border-radius: 6px; box-shadow: 0 1px 0 #E3DCCB, 0 24px 48px -18px rgba(20, 30, 60, 0.35); padding: 18px 24px; display: flex; flex-direction: column; position: relative; background-color: #FBF8F1; background-image: repeating-linear-gradient(to bottom, transparent 0 23px, #D9E1EF 23px 24px); background-position: 0 6px; }
+.pp-booklet .bk-head, .pp-phone .ph-bar { display: flex; justify-content: space-between; font-family: var(--font-display); font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: #8A7F66; }
+.pp-booklet h3 { color: #1E2B48; font-size: 1.2rem; margin: 4px -24px 0; padding: 0 24px 6px; border-bottom: 2px solid #B8322A; background: #FBF8F1; }
+.pp-booklet.dark h3 { background: transparent; border-bottom-color: #F3B1A9; }
+.pp-booklet p, .pp-booklet li { font-size: 0.86rem; line-height: 24px; color: #2D3650; }
+.pp-booklet ul { margin: 8px 0 0; padding-left: 1.1em; }
+.pp-booklet .bk-row { display: flex; gap: 18px; align-items: center; margin-top: 12px; }
+.pp-booklet .bk-code { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; letter-spacing: 0.14em; color: #B8322A; }
+.pp-booklet .bk-qr { flex: none; width: 92px; height: 92px; background:
   conic-gradient(from 90deg at 30% 30%, #1E2B48 25%, transparent 0) 0 0 / 18px 18px,
   repeating-linear-gradient(45deg, #1E2B48 0 3px, transparent 3px 7px);
   border: 6px solid #1E2B48; border-radius: 4px; }
+.pp-phone { display: none; width: 270px; aspect-ratio: 9 / 17; background: var(--card); color: var(--ink); border: 10px solid #1A2133; border-radius: 36px; box-shadow: 0 24px 48px -18px rgba(20, 30, 60, 0.4); padding: 22px 16px; overflow: hidden; }
+.pp-phone .bk-page { gap: 0; }
+.pp-phone h3 { font-size: 1.3rem; margin-top: 10px; }
+.pp-phone .ph-video { margin-top: 12px; min-height: 44px; border-radius: 10px; background: var(--brand-fill); color: var(--on-fill); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; text-align: center; padding: 8px; }
+.pp-phone ul { margin: 12px 0 0; padding-left: 1.1em; font-size: 0.88rem; line-height: 1.6; }
+.pp-phone .ph-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.pp-phone .ph-chips span { font-family: var(--font-display); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; border: 1.5px solid var(--line); border-radius: 999px; padding: 3px 9px; color: var(--muted); }
+.pp-guide-stick.phone .pp-phone { display: block; }
+.pp-gstep .pp-phone { display: none; }
+.pp-stack { position: relative; width: min(460px, 100%); }
+.pp-stack::before, .pp-stack::after { content: ""; position: absolute; inset: 0; border-radius: 6px; background: #F3EEE2; box-shadow: 0 1px 0 #E3DCCB; transform: rotate(-3deg) translate(-6px, 8px); z-index: -1; }
+.pp-stack::after { transform: rotate(2.5deg) translate(8px, 10px); background: #EFE9DB; z-index: -2; }
+.pp-booklet.dark { background-color: #1E2B48; background-image: none; color: #FFFFFF; }
+.pp-booklet.dark h3, .pp-booklet.dark p, .pp-booklet.dark li { color: #FFFFFF; }
+.pp-booklet.dark .bk-head { color: #F3B1A9; }
+.pp-booklet.dark .bk-code { color: #F3B1A9; }
+.pp-booklet.dark .bk-qr { border-color: #FFFFFF; background:
+  conic-gradient(from 90deg at 30% 30%, #FFFFFF 25%, transparent 0) 0 0 / 18px 18px,
+  repeating-linear-gradient(45deg, #FFFFFF 0 3px, transparent 3px 7px); }
+.pp-guide-stick { flex-direction: column; align-items: center; gap: 26px; }
+.pp-dots { display: flex; gap: 8px; }
+.pp-dots span { width: 8px; height: 8px; border-radius: 50%; background: var(--line); transition: background 0.3s, transform 0.3s; }
+.pp-dots span.on { background: var(--accent); transform: scale(1.35); }
+.pp-guide-stick.phone .pp-stack, .pp-guide-stick.phone .pp-dots { display: none; }
+.pp-gstep.pp-hl h2 { color: var(--accent); }
+.pp-phone .ph-chips span.on { background: var(--brand-fill); border-color: var(--brand-fill); color: var(--on-fill); }
+.pp-phone .ph-plan { margin-top: 14px; border: 1.5px solid var(--line); border-radius: 12px; padding: 10px 12px; font-size: 0.82rem; }
+.pp-phone .ph-plan b { font-family: var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.75rem; color: var(--accent); }
+.pp-phone .ph-plan ol { margin: 6px 0 0; padding-left: 1.2em; line-height: 1.6; }
+.pp-deckrow { display: none; }
 .bk-page { display: none; flex-direction: column; gap: 12px; flex: 1; }
 .bk-page.on { display: flex; animation: pp-flip 0.45s ease-out; }
 @keyframes pp-flip { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: none; } }
@@ -393,7 +425,9 @@ details p { padding-bottom: 16px; max-width: 42em; }
   .pp-guide { grid-template-columns: minmax(0, 1fr); }
   .pp-guide-stick { display: none; }
   .pp-gstep, .pp-gstep:first-child { min-height: 0; opacity: 1; padding-block: 28px; }
-  .pp-gstep .pp-booklet { display: flex; aspect-ratio: auto; margin-top: 8px; }
+  .pp-deckrow { display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 8px 2px 18px; margin-top: 8px; }
+  .pp-deckrow .pp-booklet { display: flex; flex: 0 0 86%; scroll-snap-align: start; aspect-ratio: auto; min-height: 190px; }
+  .pp-gstep .pp-phone { display: block; margin: 8px auto 0; aspect-ratio: auto; }
   .pp-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pp-stat:last-child { grid-column: 1 / -1; }
   .pp-three, .pp-ages { grid-template-columns: minmax(0, 1fr); }
@@ -431,7 +465,7 @@ details p { padding-bottom: 16px; max-width: 42em; }
       <div class="hero-copy">
         <div class="eyebrow">Vol. 1 · Recovery</div>
         <h1>Recovery gear that comes with the know-how</h1>
-        <p class="lede">The Release Kit puts silicone cups, a steel scraper, a peanut ball and a stretch strap in one bag, with a printed guide and a 15-minute routine you can run after any game.</p>
+        <p class="lede">The Release Kit puts silicone cups, a steel scraper, a peanut ball and a stretch strap in one bag, with pocket cards and a full online guide for a 15-minute routine you can run after any game.</p>
         <div class="btn-row">
           <a class="btn btn-primary" href="#release-kit">See the Release Kit</a>
           <a class="btn btn-ghost" href="#guides">Read the guides</a>
@@ -487,13 +521,13 @@ details p { padding-bottom: 16px; max-width: 42em; }
         </div>
         <div class="step">
           <div class="step-num">2</div>
-          <h3>Read the guide</h3>
-          <p class="muted">Safety comes first, then one page per tool: how to use it, how long, and when to stop.</p>
+          <h3>Scan the card</h3>
+          <p class="muted">A pocket card in the bag unlocks the full online guide: safety first, then how to use each tool, how long, and when to stop.</p>
         </div>
         <div class="step">
           <div class="step-num">3</div>
           <h3>Run the routine</h3>
-          <p class="muted">The 15-Minute Release, after games, practices and lifts. A QR code in the guide opens the videos.</p>
+          <p class="muted">The 15-Minute Release, after games, practices and lifts. It’s on its own pocket card, with a video for every step online.</p>
         </div>
       </div>
     </div>
@@ -506,7 +540,7 @@ details p { padding-bottom: 16px; max-width: 42em; }
       <p class="lede" style="margin-top: 12px">Every kit is a volume: gear plus what we’ve learned about using it. The Release Kit comes first.</p>
       <div class="shelf">
         <a class="spine live" href="#release-kit">
-          <span class="spine-left"><span class="spine-title">Release Kit</span><span class="spine-sub">Cups, scraper, peanut ball, strap, printed guide</span></span>
+          <span class="spine-left"><span class="spine-title">Release Kit</span><span class="spine-sub">Cups, scraper, peanut ball, strap, guide cards</span></span>
           <span class="spine-tag">$44.99</span>
         </a>
         <div class="spine">
@@ -530,7 +564,7 @@ details p { padding-bottom: 16px; max-width: 42em; }
       <div class="stack">
         <div class="eyebrow">Buying for your player?</div>
         <h2>Every step is written down</h2>
-        <p>The printed guide covers how long to use each tool, where not to use it, and when to stop and see an athletic trainer. No guessing from random videos.</p>
+        <p>Eight pocket guide cards live in the bag, and the full guide is one scan away. It covers how long to use each tool, where not to use it, and when to stop and see an athletic trainer. No guessing from random videos.</p>
         <p><a href="#parents">What parents should know</a></p>
       </div>
       <div class="stack">
@@ -570,7 +604,7 @@ details p { padding-bottom: 16px; max-width: 42em; }
           <div class="eyebrow">Vol. 1 · Recovery</div>
           <h1>Release Kit</h1>
           <div class="price">$44.99</div>
-          <p class="lede">Four recovery tools in one bag, with a printed step-by-step guide and the 15-Minute Release routine. Built for athletes 13 and up.</p>
+          <p class="lede">Four recovery tools in one bag, with pocket cards, a full step-by-step online guide and the 15-Minute Release routine. Built for athletes 13 and up.</p>
           <div class="btn-row">
             <button class="btn btn-primary" type="button" disabled>Add to cart · opens at launch</button>
             <a class="btn btn-ghost" href="#waitlist" data-goto="home">Join the waitlist</a>
@@ -584,8 +618,8 @@ details p { padding-bottom: 16px; max-width: 42em; }
               <li><span>Steel scraper</span><span>Stainless, multi-edge</span></li>
               <li><span>Peanut ball</span><span>Upper back, glutes, lats</span></li>
               <li><span>Stretch strap</span><span>Multi-loop</span></li>
-              <li><span>Printed guide</span><span>8 pages + video QR</span></li>
-              <li><span>Field Guide card</span><span>QR to 35 techniques</span></li>
+              <li><span>8 guide cards</span><span>3 × 5 in, safety, tools, routine</span></li>
+              <li><span>Online Field Guide</span><span>Unlocked by card 8</span></li>
               <li><span>Kit bag</span><span>27 × 42 cm, embroidered</span></li>
             </ul>
           </div>
@@ -647,7 +681,7 @@ details p { padding-bottom: 16px; max-width: 42em; }
     <div class="wrap">
       <div class="eyebrow">The guides</div>
       <h1>How to use every tool</h1>
-      <p class="lede" style="margin-top: 16px">The same steps as the printed guide in your kit, with a video for each one. One rule sits on top of all of them: discomfort is fine, sharp pain means stop.</p>
+      <p class="lede" style="margin-top: 16px">The basics from the full online guide that comes with every kit, with a video for each one. One rule sits on top of all of them: discomfort is fine, sharp pain means stop.</p>
       <div class="guide-grid">
         <article class="guide-card">
           <header><h2 style="font-size: 1.5rem">Silicone cups</h2><span class="meta">Static 3–5 min</span></header>
@@ -717,7 +751,7 @@ details p { padding-bottom: 16px; max-width: 42em; }
       <div class="fieldguide">
         <div>
           <h3>Kit owners get the full Field Guide</h3>
-          <p>Every Release Kit comes with a QR card that opens the in-depth guide: more positions for each area, sorted by how it feels (tight, achy, one tender spot, or limited range), plus quick picks for pitchers, catchers, infielders and outfielders.</p>
+          <p>Every Release Kit comes with eight guide cards. Scan the QR code on card 8, enter its code, and the in-depth guide opens: more positions for each area, sorted by how it feels (tight, achy, one tender spot, or limited range), plus quick picks for pitchers, catchers, infielders and outfielders.</p>
         </div>
         <div class="stat">35<span>TECHNIQUES</span></div>
       </div>
@@ -733,7 +767,7 @@ details p { padding-bottom: 16px; max-width: 42em; }
     <div class="wrap">
       <div class="eyebrow rv">For parents</div>
       <h1 class="pp-xl rv" style="--d: 0.08s">Peace of mind<br>comes in the bag.</h1>
-      <p class="pp-sub rv" style="--d: 0.16s">The Release Kit is four recovery tools and a printed guide that spells out how to use each one safely. Everything your player needs, and everything you’d want them to know.</p>
+      <p class="pp-sub rv" style="--d: 0.16s">The Release Kit is four recovery tools, pocket cards and a full online guide that spells out how to use each one safely. Everything your player needs, and everything you’d want them to know.</p>
       <div class="btn-row rv" style="--d: 0.24s">
         <a class="btn btn-primary" href="#release-kit">See the Release Kit</a>
         <a class="btn btn-ghost" href="#waitlist">Join the waitlist</a>
@@ -744,7 +778,7 @@ details p { padding-bottom: 16px; max-width: 42em; }
       <figure class="bag-figure">
         <svg class="bag-cords" viewBox="0 0 120 50" aria-hidden="true"><path d="M52,50 C40,20 30,4 46,4 C60,4 58,26 56,50 M68,50 C80,20 90,4 74,4 C60,4 62,26 64,50" fill="none" stroke="var(--cord)" stroke-width="4" stroke-linecap="round"/></svg>
         <div class="bag"><img src="release-kit-logo.svg" alt="Release Kit patch on the kit bag"></div>
-        <figcaption>[Photo: the bag and printed guide]</figcaption>
+        <figcaption>[Photo: the bag and guide cards]</figcaption>
         <div class="pp-scrollcue" aria-hidden="true">Scroll to see what’s inside ↓</div>
       </figure>
     </div>
@@ -848,17 +882,17 @@ details p { padding-bottom: 16px; max-width: 42em; }
     </div>
   </div>
 
-  <!-- 5. The guide, page by page -->
+  <!-- 5. The cards and the online guide -->
   <div class="pp-chapter">
     <div class="wrap">
-      <div class="pp-center" style="max-width: 760px">
-        <div class="eyebrow rv">The printed guide</div>
-        <h2 class="pp-lg rv" style="--d: 0.08s; margin-top: 14px">The part that makes it different.</h2>
-        <p class="pp-sub rv" style="--d: 0.16s; margin: 20px auto 0">Eight printed pages that live in the bag, so the instructions are always next to the tools.</p>
+      <div class="pp-center" style="max-width: 780px">
+        <div class="eyebrow rv">The guide cards</div>
+        <h2 class="pp-lg rv" style="--d: 0.08s; margin-top: 14px">Eight cards in the bag. The full guide is one scan away.</h2>
+        <p class="pp-sub rv" style="--d: 0.16s; margin: 20px auto 0">Every instruction your player needs, on eight 3×5 cards that fit in the bag. The last card unlocks the online Field Guide, with 35 techniques and a custom plan for whatever’s sore.</p>
       </div>
       <div class="pp-guide">
-        <div class="pp-guide-stick"><div class="pp-booklet" aria-hidden="true"><div class="bk-page on" data-bk="0"><div class="bk-head"><span>Release Kit Guide</span><span>Section 1</span></div><h3>Safety first</h3><p>Before any tool, the guide covers where not to use them:</p><ul><li>Bones, the spine or joints</li><li>The front or sides of the neck</li><li>Broken skin, rashes or bruises</li><li>A fresh or swollen injury</li></ul><p>And who should ask a doctor first.</p><div class="bk-foot">THE ATHLETE’S LIBRARY</div></div><div class="bk-page" data-bk="1"><div class="bk-head"><span>Release Kit Guide</span><span>Section 2</span></div><h3>One page per tool</h3><p><b>Silicone cups</b></p><ul><li>Rub on a little lotion</li><li>Half squeeze, place, let go</li><li>3–5 min the first time</li><li>Never more than 10</li></ul><p>Every tool gets a page like this: how, how long, when to stop.</p><div class="bk-foot">THE ATHLETE’S LIBRARY</div></div><div class="bk-page" data-bk="2"><div class="bk-head"><span>Release Kit Guide</span><span>Section 3</span></div><h3>The 15‑Minute Release</h3><ul><li>Peanut ball, upper back · 2 min</li><li>Peanut ball, glutes and lats · 4 min</li><li>Scraper, forearms and calves · 3 min</li><li>Gliding cups, legs · 2 min</li><li>Strap stretches · 4 min</li></ul><p>In order, after games, practices and lifts.</p><div class="bk-foot">THE ATHLETE’S LIBRARY</div></div><div class="bk-page" data-bk="3"><div class="bk-head"><span>Release Kit Guide</span><span>Section 4</span></div><h3>Watch it done</h3><p>Scan the code to watch every step done start to finish.</p><div class="bk-qr" aria-hidden="true"></div><p>The Field Guide card opens 35 more techniques, sorted by how it feels.</p><div class="bk-foot">THE ATHLETE’S LIBRARY</div></div></div></div>
-        <div class="pp-guide-steps"><div class="pp-gstep on" data-step="0"><div class="step-num">1</div><h2 class="pp-lg">Safety comes before anything else.</h2><p class="pp-sub">The first thing your player reads isn’t how to use the tools. It’s where never to use them, and who should check with a doctor first.</p><div class="pp-booklet" aria-hidden="true"><div class="bk-head"><span>Release Kit Guide</span><span>Section 1</span></div><h3>Safety first</h3><p>Before any tool, the guide covers where not to use them:</p><ul><li>Bones, the spine or joints</li><li>The front or sides of the neck</li><li>Broken skin, rashes or bruises</li><li>A fresh or swollen injury</li></ul><p>And who should ask a doctor first.</p><div class="bk-foot">THE ATHLETE’S LIBRARY</div></div></div><div class="pp-gstep" data-step="1"><div class="step-num">2</div><h2 class="pp-lg">Then one page per tool.</h2><p class="pp-sub">Each tool gets its own page in plain language: how to use it, exactly how long, and the signs that mean stop.</p><div class="pp-booklet" aria-hidden="true"><div class="bk-head"><span>Release Kit Guide</span><span>Section 2</span></div><h3>One page per tool</h3><p><b>Silicone cups</b></p><ul><li>Rub on a little lotion</li><li>Half squeeze, place, let go</li><li>3–5 min the first time</li><li>Never more than 10</li></ul><p>Every tool gets a page like this: how, how long, when to stop.</p><div class="bk-foot">THE ATHLETE’S LIBRARY</div></div></div><div class="pp-gstep" data-step="2"><div class="step-num">3</div><h2 class="pp-lg">Then the routine, in order.</h2><p class="pp-sub">Five steps, fifteen minutes. Your player doesn’t have to figure out what to do first. They just follow the list after a game, practice or lift.</p><div class="pp-booklet" aria-hidden="true"><div class="bk-head"><span>Release Kit Guide</span><span>Section 3</span></div><h3>The 15‑Minute Release</h3><ul><li>Peanut ball, upper back · 2 min</li><li>Peanut ball, glutes and lats · 4 min</li><li>Scraper, forearms and calves · 3 min</li><li>Gliding cups, legs · 2 min</li><li>Strap stretches · 4 min</li></ul><p>In order, after games, practices and lifts.</p><div class="bk-foot">THE ATHLETE’S LIBRARY</div></div></div><div class="pp-gstep" data-step="3"><div class="step-num">4</div><h2 class="pp-lg">And a video for every step.</h2><p class="pp-sub">A QR code opens videos of each step. Kit owners also get the Field Guide card with 35 more techniques.</p><div class="pp-booklet" aria-hidden="true"><div class="bk-head"><span>Release Kit Guide</span><span>Section 4</span></div><h3>Watch it done</h3><p>Scan the code to watch every step done start to finish.</p><div class="bk-qr" aria-hidden="true"></div><p>The Field Guide card opens 35 more techniques, sorted by how it feels.</p><div class="bk-foot">THE ATHLETE’S LIBRARY</div></div></div></div>
+        <div class="pp-guide-stick"><div class="pp-stack"><div class="pp-booklet" aria-hidden="true"><div class="bk-page on" data-bk="0"><div class="bk-head"><span>Safety</span><span>Card 1 of 8</span></div><h3>Never use on</h3><ul><li>Bones, the spine or joints</li><li>The front or sides of the neck</li><li>Broken skin, rashes or bruises</li><li>A fresh or swollen injury</li></ul></div><div class="bk-page" data-bk="1"><div class="bk-head"><span>Safety</span><span>Card 2 of 8</span></div><h3>When to stop</h3><ul><li><b>Sharp pain:</b> stop right away</li><li><b>Swelling, numbness, tingling:</b> see a trainer</li><li><b>Ask a doctor first:</b> blood thinners, skin or bleeding conditions, pregnancy</li></ul></div><div class="bk-page" data-bk="2"><div class="bk-head"><span>Tool 1</span><span>Card 3 of 8</span></div><h3>Silicone cups</h3><ul><li>Lotion on, half squeeze, place, let go</li><li>3–5 min the first time, never more than 10</li><li>Press the edge to remove, never pull</li></ul></div><div class="bk-page" data-bk="3"><div class="bk-head"><span>Tool 2</span><span>Card 4 of 8</span></div><h3>Steel scraper</h3><ul><li>Lotion first, edge at 30–45°</li><li>Short strokes, one direction</li><li>30–60 sec a spot, 2–3 min a muscle</li></ul></div><div class="bk-page" data-bk="4"><div class="bk-head"><span>Tool 3</span><span>Card 5 of 8</span></div><h3>Peanut ball</h3><ul><li>Pin it against a wall or the floor</li><li>Upper back: spine in the gap</li><li>Tingling means a nerve. Move off it.</li></ul></div><div class="bk-page" data-bk="5"><div class="bk-head"><span>Tool 4</span><span>Card 6 of 8</span></div><h3>Stretch strap</h3><ul><li>After activity, while warm</li><li>Hold 20–30 sec, 2–3 times a side</li><li>Ease into tension. No bouncing.</li></ul></div><div class="bk-page" data-bk="6"><div class="bk-head"><span>Routine</span><span>Card 7 of 8</span></div><h3>The 15‑Minute Release</h3><ul><li>Peanut ball, upper back · 2 min</li><li>Peanut ball, glutes and lats · 4 min</li><li>Scraper, forearms and calves · 3 min</li><li>Gliding cups, legs · 2 min</li><li>Strap stretches · 4 min</li></ul></div><div class="bk-page" data-bk="7"><div class="bk-head"><span>Field Guide</span><span>Card 8 of 8</span></div><h3>Unlock the full guide</h3><div class="bk-row"><div class="bk-qr" aria-hidden="true"></div><div><p>Scan, then enter your code:</p><p class="bk-code">XXXX‑XXXX</p><p>35 techniques · 11 body areas · custom plans</p></div></div></div></div></div><div class="pp-phone" aria-hidden="true"><div class="bk-page" data-bk="8"><div class="ph-bar"><span>Field Guide</span><span>Unlocked</span></div><h3>What’s bothering you?</h3><div class="ph-chips"><span class="on">Hamstrings</span><span>Upper back</span><span>Forearms</span><span>Glutes</span></div><div class="ph-chips"><span>Tight</span><span class="on">Achy</span><span>Tender spot</span><span>Limited range</span></div><div class="ph-plan"><b>Your plan · 8 min</b><ol><li>Strap hamstring hold · 2 min</li><li>Gliding cups, back of thigh · 2 min</li><li>Peanut ball, glutes · 2 min</li><li>Strap, let it fall in and out · 2 min</li></ol></div><div class="ph-video">▶ Video for every step</div></div></div><div class="pp-dots" aria-hidden="true"><span data-dot="0"></span><span data-dot="1"></span><span data-dot="2"></span><span data-dot="3"></span><span data-dot="4"></span><span data-dot="5"></span><span data-dot="6"></span><span data-dot="7"></span></div></div>
+        <div class="pp-guide-steps"><div class="pp-gstep on" data-step="0" data-cards="0,1"><div class="step-num">1</div><h2 class="pp-lg">Two safety cards come first.</h2><p class="pp-sub">Before anything else: where never to use the tools, the signs that mean stop, and who should check with a doctor.</p><div class="pp-deckrow"><div class="pp-booklet" aria-hidden="true"><div class="bk-page on" data-bk="0"><div class="bk-head"><span>Safety</span><span>Card 1 of 8</span></div><h3>Never use on</h3><ul><li>Bones, the spine or joints</li><li>The front or sides of the neck</li><li>Broken skin, rashes or bruises</li><li>A fresh or swollen injury</li></ul></div></div><div class="pp-booklet" aria-hidden="true"><div class="bk-page on" data-bk="1"><div class="bk-head"><span>Safety</span><span>Card 2 of 8</span></div><h3>When to stop</h3><ul><li><b>Sharp pain:</b> stop right away</li><li><b>Swelling, numbness, tingling:</b> see a trainer</li><li><b>Ask a doctor first:</b> blood thinners, skin or bleeding conditions, pregnancy</li></ul></div></div></div></div><div class="pp-gstep" data-step="1" data-cards="2,3,4,5"><div class="step-num">2</div><h2 class="pp-lg">Then one card per tool.</h2><p class="pp-sub">How to use it, exactly how long, and when to stop. Small enough to keep in the bag, clear enough to follow in the locker room.</p><div class="pp-deckrow"><div class="pp-booklet" aria-hidden="true"><div class="bk-page on" data-bk="2"><div class="bk-head"><span>Tool 1</span><span>Card 3 of 8</span></div><h3>Silicone cups</h3><ul><li>Lotion on, half squeeze, place, let go</li><li>3–5 min the first time, never more than 10</li><li>Press the edge to remove, never pull</li></ul></div></div><div class="pp-booklet" aria-hidden="true"><div class="bk-page on" data-bk="3"><div class="bk-head"><span>Tool 2</span><span>Card 4 of 8</span></div><h3>Steel scraper</h3><ul><li>Lotion first, edge at 30–45°</li><li>Short strokes, one direction</li><li>30–60 sec a spot, 2–3 min a muscle</li></ul></div></div><div class="pp-booklet" aria-hidden="true"><div class="bk-page on" data-bk="4"><div class="bk-head"><span>Tool 3</span><span>Card 5 of 8</span></div><h3>Peanut ball</h3><ul><li>Pin it against a wall or the floor</li><li>Upper back: spine in the gap</li><li>Tingling means a nerve. Move off it.</li></ul></div></div><div class="pp-booklet" aria-hidden="true"><div class="bk-page on" data-bk="5"><div class="bk-head"><span>Tool 4</span><span>Card 6 of 8</span></div><h3>Stretch strap</h3><ul><li>After activity, while warm</li><li>Hold 20–30 sec, 2–3 times a side</li><li>Ease into tension. No bouncing.</li></ul></div></div></div></div><div class="pp-gstep" data-step="2" data-cards="6"><div class="step-num">3</div><h2 class="pp-lg">The routine card goes to every game.</h2><p class="pp-sub">The 15-Minute Release, five steps in order. Your player doesn’t have to figure out what to do first.</p><div class="pp-deckrow"><div class="pp-booklet" aria-hidden="true"><div class="bk-page on" data-bk="6"><div class="bk-head"><span>Routine</span><span>Card 7 of 8</span></div><h3>The 15‑Minute Release</h3><ul><li>Peanut ball, upper back · 2 min</li><li>Peanut ball, glutes and lats · 4 min</li><li>Scraper, forearms and calves · 3 min</li><li>Gliding cups, legs · 2 min</li><li>Strap stretches · 4 min</li></ul></div></div></div></div><div class="pp-gstep pp-hl" data-step="3" data-cards="7"><div class="step-num">4</div><h2 class="pp-lg">Card 8 unlocks everything else.</h2><p class="pp-sub">Scan the QR code and enter the code printed on the card. The full Field Guide opens on their phone, and stays there.</p><div class="pp-deckrow"><div class="pp-booklet dark" aria-hidden="true"><div class="bk-page on" data-bk="7"><div class="bk-head"><span>Field Guide</span><span>Card 8 of 8</span></div><h3>Unlock the full guide</h3><div class="bk-row"><div class="bk-qr" aria-hidden="true"></div><div><p>Scan, then enter your code:</p><p class="bk-code">XXXX‑XXXX</p><p>35 techniques · 11 body areas · custom plans</p></div></div></div></div></div></div><div class="pp-gstep pp-hl" data-step="4" data-cards="8"><div class="step-num">5</div><h2 class="pp-lg">35 techniques. 11 body areas. A plan for whatever’s sore.</h2><p class="pp-sub">Your player picks what hurts and how it feels, and the guide builds a timed recovery plan with the tools in their bag. Every step has a video.</p><div class="pp-phone" aria-hidden="true"><div class="bk-page on"><div class="ph-bar"><span>Field Guide</span><span>Unlocked</span></div><h3>What’s bothering you?</h3><div class="ph-chips"><span class="on">Hamstrings</span><span>Upper back</span><span>Forearms</span><span>Glutes</span></div><div class="ph-chips"><span>Tight</span><span class="on">Achy</span><span>Tender spot</span><span>Limited range</span></div><div class="ph-plan"><b>Your plan · 8 min</b><ol><li>Strap hamstring hold · 2 min</li><li>Gliding cups, back of thigh · 2 min</li><li>Peanut ball, glutes · 2 min</li><li>Strap, let it fall in and out · 2 min</li></ol></div><div class="ph-video">▶ Video for every step</div></div></div></div></div>
       </div>
     </div>
   </div>
@@ -873,7 +907,7 @@ details p { padding-bottom: 16px; max-width: 42em; }
       <div class="pp-stats">
         <div class="pp-stat rv"><div class="n" data-count="4">4</div><div class="l">tools in one bag</div></div>
         <div class="pp-stat rv" style="--d: 0.08s"><div class="n" data-count="15">15</div><div class="l">minutes for the full routine</div></div>
-        <div class="pp-stat rv" style="--d: 0.16s"><div class="n" data-count="8">8</div><div class="l">printed guide pages</div></div>
+        <div class="pp-stat rv" style="--d: 0.16s"><div class="n" data-count="8">8</div><div class="l">pocket guide cards</div></div>
         <div class="pp-stat rv" style="--d: 0.24s"><div class="n" data-count="35">35</div><div class="l">techniques in the Field Guide</div></div>
         <div class="pp-stat rv" style="--d: 0.32s"><div class="n">$0</div><div class="l">shipping in the US</div></div>
       </div>
@@ -885,11 +919,11 @@ details p { padding-bottom: 16px; max-width: 42em; }
     <div class="wrap">
       <div class="pp-center" style="max-width: 760px">
         <div class="eyebrow rv">Safety, in plain English</div>
-        <h2 class="pp-lg rv" style="--d: 0.08s; margin-top: 14px">Three rules on every page.</h2>
+        <h2 class="pp-lg rv" style="--d: 0.08s; margin-top: 14px">Three rules, on the card and in the guide.</h2>
       </div>
       <div class="pp-three">
         <div class="pp-card rv"><div class="big">01</div><h3>How long</h3><p class="muted">Clear time limits for every tool, like 3–5 minutes for a cup the first time and never more than 10.</p></div>
-        <div class="pp-card rv" style="--d: 0.1s"><div class="big">02</div><h3>Where not to use it</h3><p class="muted">No bones, spine, joints, neck, broken skin, bruises or fresh injuries. It gets its own page.</p></div>
+        <div class="pp-card rv" style="--d: 0.1s"><div class="big">02</div><h3>Where not to use it</h3><p class="muted">No bones, spine, joints, neck, broken skin, bruises or fresh injuries. It gets its own card.</p></div>
         <div class="pp-card rv" style="--d: 0.2s"><div class="big">03</div><h3>When to stop</h3><p class="muted">Sharp pain means stop. Lingering pain, swelling, numbness or tingling means see an athletic trainer or doctor.</p></div>
       </div>
     </div>
@@ -955,8 +989,8 @@ details p { padding-bottom: 16px; max-width: 42em; }
             <li><span>Steel scraper</span><span>Stainless, multi-edge</span></li>
             <li><span>Peanut ball</span><span>Upper back, glutes, lats</span></li>
             <li><span>Stretch strap</span><span>Multi-loop</span></li>
-            <li><span>Printed guide</span><span>8 pages + video QR</span></li>
-            <li><span>Field Guide card</span><span>QR to 35 techniques</span></li>
+            <li><span>8 guide cards</span><span>3 × 5 in, safety, tools, routine</span></li>
+            <li><span>Online Field Guide</span><span>Unlocked by card 8</span></li>
             <li><span>Kit bag</span><span>27 × 42 cm, embroidered</span></li>
           </ul>
         </div>
@@ -981,7 +1015,7 @@ details p { padding-bottom: 16px; max-width: 42em; }
       <h2 class="pp-lg rv" style="--d: 0.08s; margin-top: 14px">Good questions.</h2>
       <div style="margin-top: 32px">
         <details><summary>Will cupping leave marks on my kid?</summary><p>Usually, yes. They’re round, they’re normal, and they fade over several days. The guide says not to cup the same spot again until they’re gone.</p></details>
-        <details><summary>What if they use it wrong?</summary><p>The guide is written so that’s hard to do: time limits for every tool, a full page on where not to use them, and a video for every step. Sharp pain means stop, every time.</p></details>
+        <details><summary>What if they use it wrong?</summary><p>The guide is written so that’s hard to do: time limits for every tool, safety cards in the bag on where not to use them, and a video for every step. Sharp pain means stop, every time.</p></details>
         <details><summary>What if they get hurt playing?</summary><p>Then this isn’t the answer. A fresh or swollen injury is on the guide’s “never use” list. See an athletic trainer or doctor.</p></details>
         <details><summary>What if it’s not a fit?</summary><p>Return unused items in their original packaging within 30 days for a refund. For hygiene reasons, used cups can’t be returned unless they arrived defective.</p></details>
         <details><summary>Can I order for the whole team?</summary><p>Yes. Team orders of 10 or more kits get a discount. Team ordering opens with the store.</p></details>
@@ -1013,7 +1047,7 @@ details p { padding-bottom: 16px; max-width: 42em; }
         <h1>Everything I’ve learned, one volume at a time</h1>
         <p class="lede">I’m Henry, an outfielder playing junior college baseball in Virginia Beach.</p>
         <p>My roommates and I started cupping and scraping each other after games, and pretty soon people were coming over asking us to do it on them. Buying the tools is the easy part. Finding a good price and knowing how to apply them is the part 99% of people miss. That’s why I created The Athlete’s Library.</p>
-        <p>Most recovery gear online is a bag of random stuff with a pamphlet nobody reads. So I built a kit around the routine we actually use, with a printed guide and videos of me doing every step. It’s not medical advice, just what keeps us ready for the next game.</p>
+        <p>Most recovery gear online is a bag of random stuff with a pamphlet nobody reads. So I built a kit around the routine we actually use, with pocket cards in the bag and a full online guide with videos of me doing every step. It’s not medical advice, just what keeps us ready for the next game.</p>
         <p>That’s Volume 1. Whatever I learn next goes in the next one.</p>
         <div class="video-slot" style="margin-top: 12px">[Photo: Henry and teammates, no school logos]</div>
       </div>
@@ -1031,7 +1065,7 @@ details p { padding-bottom: 16px; max-width: 42em; }
       <div class="faq-group">
         <h3>The kit</h3>
         <details><summary>How is this different from buying the stuff on Amazon?</summary><p>You could piece it together from five listings. We picked tools that work together, put them in one bag, and added the guide and videos so you actually know what to do with them tonight.</p></details>
-        <details><summary>I’ve never done cupping or scraping. Is it hard?</summary><p>No. Start light: a half-squeeze on the cups for 3–5 minutes, and light pressure with the scraper. The guide’s QR code opens a video of each step.</p></details>
+        <details><summary>I’ve never done cupping or scraping. Is it hard?</summary><p>No. Start light: a half-squeeze on the cups for 3–5 minutes, and light pressure with the scraper. The QR code on card 8 opens a video of each step.</p></details>
         <details><summary>Will cupping leave marks?</summary><p>Usually, yes. Round marks are normal and fade over several days. Don’t cup the same spot again until they’re gone.</p></details>
         <details><summary>Do I need anything else?</summary><p>Just lotion or oil for the scraper and gliding cups. Whatever you have at home works.</p></details>
         <details><summary>How do I clean everything?</summary><p>Warm soapy water for the cups, ball and strap. Soap and water or rubbing alcohol for the steel scraper. Air dry.</p></details>
@@ -1042,7 +1076,7 @@ details p { padding-bottom: 16px; max-width: 42em; }
         <details><summary>Is this medical treatment?</summary><p>No. These are recovery tools for general wellness. They aren’t meant to diagnose, treat, cure or prevent any condition. If you’re hurt, see an athletic trainer or doctor.</p></details>
         <details><summary>Who shouldn’t use cupping or scraping?</summary><p>Skip them if you take blood thinners, have a bleeding or skin condition, or are pregnant, unless your doctor says it’s fine. Never use them on broken skin, bruises, varicose veins or a fresh injury.</p></details>
         <details><summary>What age is the kit for?</summary><p>Athletes 13 and up. Players under 18 should use it with a parent’s okay. It isn’t designed for kids 12 and under.</p></details>
-        <details><summary>I’m buying this for my son or daughter. How do they use it safely?</summary><p>Every kit comes with a printed, step-by-step guide covering how long to use each tool, where not to use it, and when to stop and see an athletic trainer, plus a video for every step.</p></details>
+        <details><summary>I’m buying this for my son or daughter. How do they use it safely?</summary><p>Every kit comes with eight pocket guide cards, plus a step-by-step online guide covering how long to use each tool, where not to use it, and when to stop and see an athletic trainer, plus a video for every step.</p></details>
       </div>
 
       <div class="faq-group">
@@ -1171,7 +1205,7 @@ details p { padding-bottom: 16px; max-width: 42em; }
     // Sticky booklet pages
     var gsteps = Array.prototype.slice.call(pp.querySelectorAll('.pp-gstep'));
     var bkPages = Array.prototype.slice.call(pp.querySelectorAll('.pp-guide-stick .bk-page'));
-    var current = 0;
+    var current = 0, currentCard = -1;
 
     // Count-up numbers
     var counts = Array.prototype.slice.call(pp.querySelectorAll('[data-count]'));
@@ -1212,7 +1246,23 @@ details p { padding-bottom: 16px; max-width: 42em; }
         if (best !== current) {
           current = best;
           gsteps.forEach(function (g, i) { g.classList.toggle('on', i === best); });
-          bkPages.forEach(function (b, i) { b.classList.toggle('on', i === best); });
+        }
+        var g = gsteps[best];
+        if (g) {
+          var list = g.getAttribute('data-cards').split(',').map(Number);
+          var gr = g.getBoundingClientRect();
+          var frac = Math.max(0, Math.min(0.999, (mid - gr.top) / Math.max(1, gr.height)));
+          var cardIdx = list[Math.floor(frac * list.length)];
+          if (cardIdx !== currentCard) {
+            currentCard = cardIdx;
+            bkPages.forEach(function (b) { b.classList.toggle('on', +b.getAttribute('data-bk') === cardIdx); });
+            var stk = pp.querySelector('.pp-guide-stick');
+            if (stk) {
+              stk.classList.toggle('phone', cardIdx === 8);
+              var bk = stk.querySelector('.pp-booklet'); if (bk) bk.classList.toggle('dark', cardIdx === 7);
+              Array.prototype.forEach.call(stk.querySelectorAll('[data-dot]'), function (d) { d.classList.toggle('on', +d.getAttribute('data-dot') === cardIdx); });
+            }
+          }
         }
       });
     }
