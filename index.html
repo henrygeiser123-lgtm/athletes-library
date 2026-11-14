@@ -447,7 +447,8 @@ details p { padding-bottom: 16px; max-width: 42em; }
 
 /* ===== Clean light theme: white space first, navy + Carolina as accents ===== */
 :root {
-  --bg: #FFFFFF; --band: #F5F5F7; --card: #FFFFFF;
+  --bg: #FFFFFF; --band: #FAFAFC; --card: #FFFFFF;
+  --bag: #EFE9DC; --bag-edge: #D9CFB9;
   --ink: #1D1D1F; --muted: #555A66; --heading: #1E2B48;
   --line: #E2E4EA; --rule: #DCE6EF;
   --header-bg: rgba(255, 255, 255, 0.82);
@@ -458,7 +459,7 @@ details p { padding-bottom: 16px; max-width: 42em; }
 :root[data-theme="dark"] { --band: #151D30; --header-bg: rgba(15, 21, 36, 0.82); }
 
 /* Header: frosted, hairline, Carolina only on the active link */
-.preview-bar { background: var(--band); color: var(--muted); font-size: 0.72rem; padding-block: 6px; }
+.preview-bar { background: var(--bg); color: var(--muted); font-size: 0.72rem; padding-block: 6px; border-bottom: 1px solid var(--line); }
 .site-header { background: var(--header-bg); -webkit-backdrop-filter: saturate(180%) blur(18px); backdrop-filter: saturate(180%) blur(18px); border-bottom: 1px solid var(--line); }
 .nav a[aria-current="page"] { border-bottom-color: var(--carolina); }
 
@@ -488,7 +489,7 @@ details p { padding-bottom: 16px; max-width: 42em; }
 .site-footer { border-top: 1px solid var(--line); }
 
 /* For parents: former navy bands become soft gray */
-.pp-dark { background: var(--band); color: var(--ink); }
+.pp-dark { background: var(--band); color: var(--ink); border-block: 1px solid var(--line); }
 .pp-dark h1, .pp-dark h2, .pp-dark h3 { color: var(--heading); }
 .pp-dark .eyebrow { color: var(--accent); }
 .pp-dark .pp-sub, .pp-dark .muted { color: var(--muted); opacity: 1; }
