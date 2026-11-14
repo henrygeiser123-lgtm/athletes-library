@@ -14,9 +14,9 @@
 <style>
 /* Layout: locked "smart guide" for kit owners. Unlock screen, then a coach-style conversation that builds a timed plan; the full catalog and tool rules sit in tabs beside it. */
 :root{
-  --navy:#1E2B48; --red:#B8322A; --accent:#2F6A97; --accentFill:#7BAFD4; --onAccent:#1E2B48; --paper:#FFFFFF; --band:#F3F8FC; --ink:#1A2133; --muted:#4A5470;
+  --navy:#1E2B48; --red:#B8322A; --accent:#2F6A97; --accentFill:#7BAFD4; --onAccent:#1E2B48; --paper:#FFFFFF; --band:#F5F5F7; --ink:#1A2133; --muted:#4A5470;
   --line:#D9DEE9; --card:#FFFFFF; --head:#1E2B48; --redtext:#B8322A; --chip:#FFFFFF; --chipOn:#1E2B48; --chipOnText:#FFFFFF;
-  --warnbg:#FBEDEB; --cardline:#E8B9B4; --bot:#F3F8FC; --me:#1E2B48; --meText:#FFFFFF; --ok:#2F7A4A;
+  --warnbg:#FBEDEB; --cardline:#E8B9B4; --bot:#F5F5F7; --me:#1E2B48; --meText:#FFFFFF; --ok:#2F7A4A;
   --t-cup:#2F6F8F; --t-scr:#5B5F6B; --t-ball:#8A5A1F; --t-strap:#3F7A4C;
   --display:"Oswald","Arial Narrow",Impact,sans-serif;
   --body:"Source Serif 4",Georgia,"Times New Roman",serif;
@@ -43,12 +43,12 @@ button{font:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
 /* Hero */
-.hero{background:#1E2B48;color:#FAF8F2;padding-block:22px}
+.hero{background:var(--band);color:var(--ink);padding-block:22px;border-bottom:1px solid var(--line)}
 .hero .wrap{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center}
 .hero img{width:84px;height:84px;display:block}
-.hero .eyebrow{color:#9CC6E4}
-.hero h1{color:#FAF8F2;font-size:clamp(26px,6vw,38px);letter-spacing:.03em;line-height:1.05;margin-block:4px 6px}
-.hero p{color:#D5DBE8;max-width:52ch;font-size:16px}
+.hero .eyebrow{color:var(--accent)}
+.hero h1{color:var(--head);font-size:clamp(26px,6vw,38px);letter-spacing:.03em;line-height:1.05;margin-block:4px 6px}
+.hero p{color:var(--muted);max-width:52ch;font-size:16px}
 body.locked .hero{padding-block:34px}
 body.locked .hero img{width:112px;height:112px}
 
@@ -60,7 +60,7 @@ body.locked .hero img{width:112px;height:112px}
 .code-row input{flex:1 1 200px;min-width:0;min-height:52px;padding:0 14px;font-family:var(--display);font-size:22px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:6px}
 .code-row input:focus{border-color:var(--head);outline:none}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border-radius:6px;font-size:15px;font-weight:600;letter-spacing:.1em;border:2px solid transparent;cursor:pointer;text-decoration:none}
-.btn-primary{background:var(--accentFill);color:var(--onAccent)}
+.btn-primary{background:var(--navy);color:#fff;border-radius:999px}
 .btn-ghost{background:transparent;color:var(--head);border-color:var(--head)}
 .btn-small{min-height:38px;padding:0 14px;font-size:13px}
 .err{color:var(--redtext);font-size:15px;min-height:1.5em}

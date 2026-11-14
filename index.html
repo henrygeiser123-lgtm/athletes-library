@@ -444,6 +444,64 @@ details p { padding-bottom: 16px; max-width: 42em; }
   .pp-box { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 480px) { .pp-promise, .pp-rules { grid-template-columns: minmax(0, 1fr); } }
+
+/* ===== Clean light theme: white space first, navy + Carolina as accents ===== */
+:root {
+  --bg: #FFFFFF; --band: #F5F5F7; --card: #FFFFFF;
+  --ink: #1D1D1F; --muted: #555A66; --heading: #1E2B48;
+  --line: #E2E4EA; --rule: #DCE6EF;
+  --header-bg: rgba(255, 255, 255, 0.82);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --band: #151D30; --header-bg: rgba(15, 21, 36, 0.82); }
+}
+:root[data-theme="dark"] { --band: #151D30; --header-bg: rgba(15, 21, 36, 0.82); }
+
+/* Header: frosted, hairline, Carolina only on the active link */
+.preview-bar { background: var(--band); color: var(--muted); font-size: 0.72rem; padding-block: 6px; }
+.site-header { background: var(--header-bg); -webkit-backdrop-filter: saturate(180%) blur(18px); backdrop-filter: saturate(180%) blur(18px); border-bottom: 1px solid var(--line); }
+.nav a[aria-current="page"] { border-bottom-color: var(--carolina); }
+
+/* Buttons: pill shapes, navy primary, Carolina on hover */
+.btn { border-radius: 999px; }
+.btn-primary { background: var(--brand-fill); color: var(--on-fill); }
+.btn-primary:hover { background: var(--carolina); color: #1E2B48; filter: none; }
+.btn-ghost { border-color: var(--line); border-width: 1.5px; }
+.btn-ghost:hover { border-color: var(--carolina); color: var(--heading); }
+.checklist li::before { background: var(--carolina); }
+
+/* Shelf: white book spines with a colored spine edge */
+.shelf { border-bottom: 4px solid var(--brand-fill); }
+.spine, .spine:nth-child(3) { background: var(--card); color: var(--heading); border: 1px solid var(--line); box-shadow: inset 8px 0 0 var(--brand-fill); padding-left: 28px; }
+.spine:hover, .spine:nth-child(3):hover { color: var(--heading); border-color: var(--carolina); }
+.spine:nth-child(3) { box-shadow: inset 8px 0 0 var(--carolina); }
+.spine.live { background: var(--carolina); color: #1E2B48; border-color: var(--carolina); box-shadow: inset 8px 0 0 var(--brand-fill); }
+.spine.live:hover { color: #1E2B48; filter: brightness(1.04); }
+
+/* Guides page call-out */
+.fieldguide { background: var(--band); color: var(--ink); border-radius: 18px; }
+.fieldguide h3 { color: var(--heading); }
+.fieldguide p { color: var(--muted); opacity: 1; }
+.fieldguide .stat { color: var(--heading); }
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--line); }
+
+/* For parents: former navy bands become soft gray */
+.pp-dark { background: var(--band); color: var(--ink); }
+.pp-dark h1, .pp-dark h2, .pp-dark h3 { color: var(--heading); }
+.pp-dark .eyebrow { color: var(--accent); }
+.pp-dark .pp-sub, .pp-dark .muted { color: var(--muted); opacity: 1; }
+.pp-statement { color: var(--heading); }
+.pp-statement em { color: var(--accent); }
+.pp-stat .n { color: var(--heading); }
+.pp-stat .l { color: var(--muted); opacity: 1; }
+.pp-final { background: var(--bg); }
+.pp-final .btn-ghost { color: var(--heading); border-color: var(--line); }
+.pp-final .btn-ghost:hover { color: var(--heading); border-color: var(--carolina); }
+.pp-final .price-line { color: var(--muted) !important; opacity: 1 !important; }
+.pp-visual, .pp-card, .pp-promise div, .pp-one { border-radius: 22px; }
+.pp-tab { border-radius: 14px; }
 </style>
 
 <div class="preview-bar">Preview site · Store not open yet</div>
