@@ -218,6 +218,13 @@ p { margin: 0; text-wrap: pretty; }
 .video-note-icon { color: var(--brand-fill); flex: none; margin-top: 2px; }
 .video-note b { color: var(--heading); }
 .area-move .vid { margin-top: 8px; font-family: var(--font-display); font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.parents-cta { display: flex; align-items: center; justify-content: space-between; gap: 16px 20px; flex-wrap: wrap; margin-top: 8px; padding: 16px 18px 16px 22px; border-radius: 20px; background: #E8F1F8; border: 1.5px solid var(--carolina); text-decoration: none; color: var(--heading); transition: transform 0.2s ease, box-shadow 0.2s ease; max-width: 560px; }
+.parents-cta:hover { color: var(--heading); transform: translateY(-2px); box-shadow: 0 12px 28px -14px rgba(30, 43, 72, 0.35); }
+.pc-copy { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1 1 240px; }
+.pc-label { font-family: var(--font-display); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); }
+.pc-text { font-size: 1rem; line-height: 1.45; }
+.pc-go { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 20px; border-radius: 999px; background: var(--brand-fill); color: var(--on-fill); font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap; }
+.parents-cta:hover .pc-go { background: var(--carolina); color: #1E2B48; }
 .fieldguide { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px 28px; align-items: center; margin-top: 36px; background: var(--brand-fill); color: var(--on-fill); border-radius: 6px; padding: 22px 24px; }
 .fieldguide h3 { color: var(--on-fill); }
 .fieldguide p { color: var(--on-fill); opacity: 0.88; margin-top: 6px; }
@@ -546,6 +553,10 @@ details p { padding-bottom: 16px; max-width: 42em; }
           <a class="btn btn-ghost" href="#guides">Read the guides</a>
         </div>
         <div class="price-line">$44.99 · Free US shipping · Ages 13+</div>
+        <a class="parents-cta" href="#parents">
+          <span class="pc-copy"><span class="pc-label">For parents</span><span class="pc-text">Buying for your player? See what’s inside and how every step is kept safe.</span></span>
+          <span class="pc-go">Learn more <span aria-hidden="true">→</span></span>
+        </a>
       </div>
       <figure class="bag-figure">
         <svg class="bag-cords" viewBox="0 0 120 50" aria-hidden="true"><path d="M52,50 C40,20 30,4 46,4 C60,4 58,26 56,50 M68,50 C80,20 90,4 74,4 C60,4 62,26 64,50" fill="none" stroke="var(--cord)" stroke-width="4" stroke-linecap="round"/></svg>
