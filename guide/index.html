@@ -236,6 +236,16 @@ body.locked .hero{padding-block:40px}
 /* Rules */
 .stopbox h3{color:var(--redtext)}
 footer{background:var(--band)}
+/* Demo videos */
+.vid-btn{display:flex;align-items:center;gap:10px;width:100%;min-height:48px;padding:0 16px;border:1.5px solid var(--line);border-radius:14px;background:var(--ice);color:var(--head);font-family:var(--display);text-transform:uppercase;letter-spacing:.1em;font-size:14px;font-weight:600;cursor:pointer}
+.vid-btn:hover{border-color:var(--carolina)}
+.vid-ico{width:26px;height:26px;border-radius:50%;background:var(--navy);flex:none;position:relative}
+.vid-ico::after{content:"";position:absolute;left:10px;top:7px;border-left:9px solid #fff;border-top:6px solid transparent;border-bottom:6px solid transparent}
+.vid-soon{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted);font-style:italic}
+.vid-soon .vid-ico{background:var(--line)}
+.vid-frame{position:relative;aspect-ratio:16/9;max-width:100%;border-radius:14px;overflow:hidden;background:#000}
+.vid-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
 </style>
 
 <header class="site-header">
@@ -329,6 +339,20 @@ footer{background:var(--band)}
 const CODE_HASH="1e13943039a41c6b427670c8ad3e33a17995116a8710246ec2be1ec576213575"; // batch code RELEASE1
 const CODE_B64="UkVMRUFTRTE=";
 const REQUEST_FORM_URL=""; // paste the Google Form or Tally link here
+/* Demo videos: paste a YouTube link next to each technique code once it's filmed.
+   Codes match the shot list (UB-1 = Upper back, technique 1). Empty = "coming soon". */
+const VIDEOS={
+  "UB-1":"","UB-2":"","UB-3":"","UB-4":"",
+  "LT-1":"","LT-2":"","LT-3":"","LT-4":"",
+  "SH-1":"","SH-2":"","SH-3":"","SH-4":"",
+  "CH-1":"","CH-2":"",
+  "FA-1":"","FA-2":"","FA-3":"","FA-4":"",
+  "GL-1":"","GL-2":"","GL-3":"","GL-4":"",
+  "HF-1":"","HF-2":"",
+  "QD-1":"","QD-2":"","QD-3":"","QD-4":"",
+  "HM-1":"","HM-2":"","HM-3":"",
+  "CF-1":"","CF-2":"","CF-3":"","CF-4":""
+};
 /* ----------------------------------- */
 
 const FEELS={tight:"Tight & stiff",achy:"Achy & heavy",knot:"One tender spot",range:"Limited range"};
@@ -403,6 +427,13 @@ const areaById=id=>AREAS.find(a=>a.id===id);
 const esc=s=>String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
 
+
+function ytId(u){if(!u)return "";const m=String(u).match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([A-Za-z0-9_-]{11})/);return m?m[1]:""}
+function videoBlock(call){const id=ytId(VIDEOS[call]);
+  if(!id)return `<div class="vid vid-soon"><span class="vid-ico" aria-hidden="true"></span>Demo video coming soon</div>`;
+  return `<div class="vid" data-yt="${id}"><button class="vid-btn" type="button" aria-label="Play demo video"><span class="vid-ico" aria-hidden="true"></span>Watch the demo</button></div>`}
+document.addEventListener("click",e=>{const b=e.target.closest(".vid-btn");if(!b)return;const box=b.parentElement,id=box.dataset.yt;
+  box.innerHTML=`<div class="vid-frame"><iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1" title="Demo video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`});
 /* ---------- Unlock ---------- */
 async function checkCode(raw){
   const v=raw.trim().toUpperCase().replace(/\s+/g,"");
@@ -512,6 +543,7 @@ function showPlan(){
   pick.forEach((t,i)=>{html+=`<div class="step" id="step${i}"><span class="n">${i+1}</span><div class="step-body">
     <div class="step-top"><span class="tag ${t.t}">${TOOLS[t.t]}</span>${t.area!==s.area?`<span class="areaname">${esc(t.areaName)}</span>`:""}</div>
     <h4>${esc(t.n)}</h4><p class="setup">${t.setup}</p><ol>${t.steps.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>
+    ${videoBlock(t.call)}
     ${t.w?`<p class="watch"><b>Watch</b>${esc(t.w)}</p>`:""}
     <div class="step-foot"><span class="timer" id="tm${i}">${fmt(t.mm)}</span><button class="btn btn-ghost btn-small" type="button" data-timer="${i}" data-min="${t.mm}" id="tb${i}">Start timer</button><button class="linkbtn" type="button" data-done="${i}">Mark done</button></div>
   </div></div>`});
@@ -574,7 +606,7 @@ function renderCatalog(){
   for(const a of AREAS){if(cat.area!=="all"&&a.id!==cat.area)continue;
     const items=a.items.map((it,i)=>({...it,call:a.code+"-"+(i+1)})).filter(it=>cat.feel==="any"||it.f.includes(cat.feel));if(!items.length)continue;
     html+=`<section class="area"><div class="area-head"><h2>${esc(a.name)}</h2><span class="call">Shelf ${a.code}</span></div><p class="area-note">${esc(a.note)}</p><div class="cards">`;
-    for(const it of items)html+=`<article class="card"><div class="top"><span class="tag ${it.t}">${TOOLS[it.t]}</span><span class="call">${it.call}</span></div><h3>${esc(it.n)}</h3><p class="setup">${it.setup}</p><ol>${it.steps.map(s=>`<li>${esc(s)}</li>`).join("")}</ol>${it.w?`<p class="watch"><b>Watch</b>${esc(it.w)}</p>`:""}<div class="meta">Time: ${esc(it.time)} · Fits: ${it.f.map(f=>FEELS[f]).join(", ")}</div></article>`;
+    for(const it of items)html+=`<article class="card"><div class="top"><span class="tag ${it.t}">${TOOLS[it.t]}</span><span class="call">${it.call}</span></div><h3>${esc(it.n)}</h3><p class="setup">${it.setup}</p><ol>${it.steps.map(s=>`<li>${esc(s)}</li>`).join("")}</ol>${videoBlock(it.call)}${it.w?`<p class="watch"><b>Watch</b>${esc(it.w)}</p>`:""}<div class="meta">Time: ${esc(it.time)} · Fits: ${it.f.map(f=>FEELS[f]).join(", ")}</div></article>`;
     html+=`</div></section>`}
   document.getElementById("catalog").innerHTML=html||`<p class="hint" style="padding:20px 0">Nothing matches. Try "Any."</p>`;
 }
