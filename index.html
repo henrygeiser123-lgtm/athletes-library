@@ -227,6 +227,26 @@ p { margin: 0; text-wrap: pretty; }
 .parents-cta:hover .pc-go { background: var(--carolina); color: #1E2B48; }
 .pp-signup { margin: 28px auto 0; justify-content: center; text-align: left; }
 .pp-final .form-note { text-align: center; }
+.kit-hero { padding-block: 36px 40px; }
+.kit-hero .hero-grid { gap: 40px; }
+.kit-hero .bag { width: min(230px, 60vw); }
+.kit-hero .bag-figure { gap: 8px; }
+.pp .pp-hero { padding-block: 34px 96px; border-top: 1px solid var(--line); background: var(--band); scroll-margin-top: 72px; }
+.pp-hero .pp-scrollcue { margin-top: 32px; }
+.pp-statement-band { background: var(--bg); border-top: 0; }
+@media (max-width: 860px) {
+  .kit-hero { padding-block: 24px 32px; }
+  .kit-hero .hero-grid { grid-template-columns: minmax(0, 1fr) auto; gap: 16px 20px; align-items: start; }
+  .kit-hero .hero-copy { display: contents; }
+  .kit-hero .hero-copy > .eyebrow { grid-column: 1 / -1; }
+  .kit-hero h1 { grid-column: 1; font-size: clamp(1.8rem, 7vw, 2.4rem); }
+  .kit-hero .bag-figure { grid-column: 2; grid-row: 2; }
+  .kit-hero .bag { width: 96px; }
+  .kit-hero .bag-cords { width: 40px; height: 18px; margin-bottom: -6px; }
+  .kit-hero .bag-figure figcaption { display: none; }
+  .kit-hero .lede, .kit-hero .btn-row, .kit-hero .price-line { grid-column: 1 / -1; }
+  .kit-hero .lede { font-size: 1.05rem; }
+}
 .fieldguide { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px 28px; align-items: center; margin-top: 36px; background: var(--brand-fill); color: var(--on-fill); border-radius: 6px; padding: 22px 24px; }
 .fieldguide h3 { color: var(--on-fill); }
 .fieldguide p { color: var(--on-fill); opacity: 0.88; margin-top: 6px; }
@@ -718,30 +738,39 @@ details p { padding-bottom: 16px; max-width: 42em; }
 <!-- HOME: scroll story -->
 <section class="page pp" data-page="home">
 
-  <!-- 1. Hero -->
-  <div class="pp-hero">
-    <div class="wrap">
-      <div class="eyebrow rv">The Release Kit · Vol. 1</div>
-      <h1 class="pp-xl rv" style="--d: 0.08s">Peace of mind<br>comes in the bag.</h1>
-      <p class="pp-sub rv" style="--d: 0.16s">The Release Kit is four recovery tools, pocket cards and a full online guide that spells out how to use each one safely. Everything an athlete needs, and everything a parent would want them to know.</p>
-      <div class="btn-row rv" style="--d: 0.24s">
-        <a class="btn btn-primary" href="#release-kit">See the Release Kit</a>
-        <a class="btn btn-ghost" href="#waitlist">Join the waitlist</a>
+  <!-- 0. Release Kit -->
+  <div class="hero kit-hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">The Release Kit · Vol. 1</div>
+        <h1>Recovery gear that comes with the know-how</h1>
+        <p class="lede">Silicone cups, a steel scraper, a peanut ball and a stretch strap in one bag, with eight guide cards and a full online guide for a 15-minute routine you can run after any game.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#release-kit">See the Release Kit</a>
+          <a class="btn btn-ghost" href="#home" data-scroll="story">Learn more <span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="price-line">$44.99 · Free US shipping · Ages 13+</div>
       </div>
-      <div class="price-line rv" style="--d: 0.3s">$44.99 · Free US shipping · Ages 13+</div>
-    </div>
-    <div class="pp-hero-stage rv" style="--d: 0.2s">
       <figure class="bag-figure">
         <svg class="bag-cords" viewBox="0 0 120 50" aria-hidden="true"><path d="M52,50 C40,20 30,4 46,4 C60,4 58,26 56,50 M68,50 C80,20 90,4 74,4 C60,4 62,26 64,50" fill="none" stroke="var(--cord)" stroke-width="4" stroke-linecap="round"/></svg>
-        <div class="bag"><img src="release-kit-logo.svg" alt="Release Kit patch on the kit bag"></div>
-        <figcaption>[Photo: the bag and guide cards]</figcaption>
-        <div class="pp-scrollcue" aria-hidden="true">Scroll to see what’s inside ↓</div>
+        <div class="bag"><img src="release-kit-logo.svg" alt="Release Kit patch: by The Athlete's Library"></div>
+        <figcaption>The kit bag · 27 × 42 cm</figcaption>
       </figure>
     </div>
   </div>
 
+  <!-- 1. Peace of mind -->
+  <div class="pp-hero" id="story">
+    <div class="wrap">
+      <div class="eyebrow">Why it’s different</div>
+      <h2 class="pp-xl">Peace of mind<br>comes in the bag.</h2>
+      <p class="pp-sub">Four recovery tools, eight guide cards and a full online guide that spells out how to use each one safely. Everything an athlete needs, and everything a parent would want them to know.</p>
+      <div class="pp-scrollcue" aria-hidden="true">Scroll to see what’s inside ↓</div>
+    </div>
+  </div>
+
   <!-- 2. Statement -->
-  <div class="pp-chapter pp-dark">
+  <div class="pp-chapter pp-dark pp-statement-band">
     <div class="wrap">
       <p class="pp-statement" data-words>The best athletes train hard and recover harder. <em>Now you can too, safely, step by step.</em></p>
     </div>
@@ -1161,6 +1190,16 @@ details p { padding-bottom: 16px; max-width: 42em; }
   /* ---- Home: scroll story ---- */
   document.documentElement.classList.add('js');
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Smooth "Learn more" scroll to the story
+  Array.prototype.forEach.call(document.querySelectorAll('[data-scroll]'), function (el) {
+    el.addEventListener('click', function (e) {
+      var t = document.getElementById(el.getAttribute('data-scroll'));
+      if (!t) return;
+      e.preventDefault();
+      t.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    });
+  });
   var pp = document.querySelector('.pp');
   if (pp) {
     var rvs = Array.prototype.slice.call(pp.querySelectorAll('.rv'));
