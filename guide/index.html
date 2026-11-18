@@ -260,6 +260,31 @@ footer{background:var(--band)}
 @media (max-width:760px){.lock-grid{grid-template-columns:minmax(0,1fr)}}
 
 /* Demo videos */
+.vid-thumb{position:relative;display:block;width:100%;aspect-ratio:16/9;max-width:100%;border:0;border-radius:14px;overflow:hidden;cursor:pointer;background:#0F1524 center/cover no-repeat;padding:0}
+.vid-thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(15,21,36,.55),rgba(15,21,36,0) 55%)}
+.vid-play{position:absolute;left:50%;top:50%;width:62px;height:62px;margin:-31px 0 0 -31px;border-radius:50%;background:rgba(30,43,72,.92);z-index:1;box-shadow:0 4px 18px rgba(0,0,0,.25)}
+.vid-play::after{content:"";position:absolute;left:25px;top:19px;border-left:17px solid #fff;border-top:12px solid transparent;border-bottom:12px solid transparent}
+.vid-thumb:hover .vid-play{background:var(--carolina)}
+.vid-label{position:absolute;left:14px;bottom:12px;z-index:1;color:#fff;font-family:var(--display);text-transform:uppercase;letter-spacing:.12em;font-size:13px;font-weight:600}
+
+/* Every tool for an area */
+.tools-list{display:flex;flex-direction:column;gap:10px;width:100%}
+.tool-row{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.tool-top{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.fit{font-family:var(--display);text-transform:uppercase;letter-spacing:.1em;font-size:12px;font-weight:600;padding:3px 10px;border-radius:999px}
+.fit-good .fit{background:var(--carolina);color:var(--navy)}
+.fit-care .fit{background:var(--ice);color:var(--deep);border:1px solid var(--rule)}
+.fit-no .fit{background:var(--warnbg);color:var(--redtext)}
+.fit-no{background:var(--band)}
+.inplan{font-size:13px;color:var(--muted);font-style:italic}
+.tool-note{font-size:15px;color:var(--ink)}
+.tech{border-top:1px solid var(--line)}
+.tech summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:10px;padding:10px 0 4px;font-family:var(--display);text-transform:uppercase;letter-spacing:.04em;font-weight:600;color:var(--head);font-size:15px}
+.tech summary::-webkit-details-marker{display:none}
+.tech summary span:first-child::before{content:"+ ";color:var(--deep)}
+.tech[open] summary span:first-child::before{content:"– "}
+.tech-body{display:flex;flex-direction:column;gap:8px;padding:6px 0 4px}
+
 .vid-btn{display:flex;align-items:center;gap:10px;width:100%;min-height:48px;padding:0 16px;border:1.5px solid var(--line);border-radius:14px;background:var(--ice);color:var(--head);font-family:var(--display);text-transform:uppercase;letter-spacing:.1em;font-size:14px;font-weight:600;cursor:pointer}
 .vid-btn:hover{border-color:var(--carolina)}
 .vid-ico{width:26px;height:26px;border-radius:50%;background:var(--navy);flex:none;position:relative}
@@ -475,9 +500,69 @@ const store={get(k){try{return localStorage.getItem(k)}catch(e){return null}},se
 function ytId(u){if(!u)return "";const m=String(u).match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([A-Za-z0-9_-]{11})/);return m?m[1]:""}
 function videoBlock(call){const id=ytId(VIDEOS[call]);
   if(!id)return `<div class="vid vid-soon"><span class="vid-ico" aria-hidden="true"></span>Demo video coming soon</div>`;
-  return `<div class="vid" data-yt="${id}"><button class="vid-btn" type="button" aria-label="Play demo video"><span class="vid-ico" aria-hidden="true"></span>Watch the demo</button></div>`}
-document.addEventListener("click",e=>{const b=e.target.closest(".vid-btn");if(!b)return;const box=b.parentElement,id=box.dataset.yt;
-  box.innerHTML=`<div class="vid-frame"><iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1" title="Demo video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`});
+  return `<div class="vid" data-yt="${id}"><button class="vid-thumb" type="button" aria-label="Play the demo video" style="background-image:url('https://i.ytimg.com/vi/${id}/hqdefault.jpg')"><span class="vid-play" aria-hidden="true"></span><span class="vid-label">Watch the demo</span></button></div>`}
+document.addEventListener("click",e=>{const b=e.target.closest(".vid-thumb");if(!b)return;const box=b.parentElement,id=box.dataset.yt;
+  box.innerHTML=`<div class="vid-frame"><iframe src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1&modestbranding=1" title="Demo video" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>`});
+
+/* ---------- Every tool for an area ---------- */
+const TOOL_ORDER_LIST=["ball","scraper","cups","strap"];
+/* Extra moves for tool + area pairs the 35 techniques don't cover.
+   fit: "care" = fine with the limits listed, "no" = don't use it here. link = codes of existing techniques to show. */
+const EXTRA={
+ "upper-back":{scraper:{fit:"no",note:"Skip the scraper here. Most of the upper back sits over the spine and shoulder blades, and you can't reach the rest safely on your own. The peanut ball does this job better."},
+   strap:{fit:"care",note:"The strap can't reach the upper back itself, but opening the chest and lats next to it often helps it feel looser.",link:["CH-2","LT-2"]}},
+ "lats":{scraper:{fit:"care",note:"Works best with a teammate. Light strokes on the muscle along your side only.",steps:{setup:"<b>Position:</b> lie on your side, top arm overhead. Lotion on the side of your back.",steps:["A teammate holds the scraper at 30–45°.","Short strokes from the bottom of the ribs up toward the armpit, one direction.","30–60 sec, then switch sides."],time:"30–60 sec a side",w:"Stay off the armpit and the bony edges of the ribs."}}},
+ "shoulder":{scraper:{fit:"care",note:"Light pressure on the meaty part of the shoulder blade only, done by a teammate. Throwing arm: skip it unless your athletic trainer says it's fine.",steps:{setup:"<b>Position:</b> sitting or face down. Lotion on the back of the shoulder blade.",steps:["A teammate holds the scraper at 30–45°.","Short, light strokes across the flat part of the shoulder blade.","30–60 sec total."],time:"30–60 sec",w:"Never over the joint, the top of the shoulder or near the neck."}}},
+ "chest":{cups:{fit:"care",note:"A small cup can glide on the chest muscle, below the collarbone and toward the shoulder.",steps:{setup:"<b>Position:</b> lying on your back or sitting. Oil first.",steps:["Light squeeze on a small cup.","Glide from the middle of the chest out toward the front of the shoulder.","Keep it moving."],time:"1 min a side",w:"Stay off the collarbone, breastbone and armpit."}},
+   scraper:{fit:"care",note:"Light strokes on the chest muscle only.",steps:{setup:"<b>Position:</b> lying on your back. Lotion first.",steps:["Scraper at 30–45°.","Short strokes from the middle of the chest out toward the shoulder, below the collarbone.","30–60 sec a side."],time:"30–60 sec a side",w:"Stay off the collarbone, breastbone and armpit."}}},
+ "forearms":{strap:{fit:"care",note:"Not really a strap area. A wall stretch does the same job with no tool.",steps:{setup:"<b>Position:</b> standing, arm straight out, palm flat on a wall with fingers pointing down.",steps:["Keep your elbow straight.","Lean gently until you feel the inside of the forearm stretch.","Hold, then turn the hand over (back of hand on the wall) for the top of the forearm."],time:"20–30 sec each way"}}},
+ "glutes":{scraper:{fit:"no",note:"Skip it. The glutes are too thick for the scraper to do much. Use the peanut ball or cups instead."}},
+ "hip-flexors":{ball:{fit:"care",note:"Use it on the front-outside of the hip, never in the crease. The crease and the inner groin have a big nerve and artery close to the surface.",steps:{setup:"<b>Position:</b> face down on your forearms. One end of the ball just below and to the outside of the bony point at the front of your hip.",steps:["Let some of your weight sink onto the ball. Start light.","Hold on a tight spot for 3–5 slow breaths, or make small rolls of an inch or two.","For more, bend that knee and slowly swing the foot side to side."],time:"60 sec a side",w:"Stay out of the hip crease and inner groin. A pulse, a zing or tingling means move off right away."}},
+   cups:{fit:"care",note:"Glide cups on the top of the thigh just below the hip, the upper part of your quad. Never in the crease.",link:["QD-1"]},
+   scraper:{fit:"care",note:"Scrape the upper third of the front of the thigh, stopping a hand's width below the crease.",link:["QD-3"]}},
+ "hamstrings":{scraper:{fit:"care",note:"Easiest with a teammate while you lie face down.",steps:{setup:"<b>Position:</b> face down, or sitting on a chair edge with the leg straight. Lotion first.",steps:["Scraper at 30–45°.","Short strokes from just above the back of the knee up toward the glute.","Three lines: inside, middle, outside."],time:"30–60 sec a spot",w:"Never on the back of the knee."}}},
+ "calves":{cups:{fit:"care",note:"A small cup can glide up the calf.",steps:{setup:"<b>Position:</b> sitting, foot up on a bench. Oil first.",steps:["Light squeeze on a small cup.","Glide from above the ankle up to below the knee.","Keep it moving."],time:"1 min a leg",w:"Stay off the shin bone and the back of the knee."}}},
+ "lower-back":{ball:{fit:"care",note:"Not on the lower back itself. Roll the glutes and hips, which usually pull on it.",link:["GL-1","GL-2"]},
+   scraper:{fit:"no",note:"Never on the lower back. It sits right over the spine."},
+   cups:{fit:"care",note:"Not on the lower back. Static cups on the glutes are the closest safe spot.",link:["GL-4"]},
+   strap:{fit:"care",note:"Stretch the hips and hamstrings, which pull on the lower back.",link:["HF-1","HM-1"]}}
+};
+function toolOptions(s){
+  const area=s.area,plan=buildPlan(s).pick,inPlan=new Set(plan.map(t=>t.t));
+  return TOOL_ORDER_LIST.map(tool=>{
+    let fit,note,items=[];
+    const own=ALL.filter(t=>t.area===area&&t.t===tool);
+    const ex=(EXTRA[area]||{})[tool];
+    if(own.length&&!ex){fit="good";note=`${own.length===1?"This move works":"These moves work"} on this area.`;items=own}
+    else if(ex){fit=ex.fit;note=ex.note;
+      if(ex.link)items=ex.link.map(c=>ALL.find(t=>t.call===c)).filter(Boolean);
+      if(ex.steps)items=[{...ex.steps,n:`${TOOLS[tool]} on the ${areaById(area).name.toLowerCase()}`,t:tool,call:null,f:[]}]}
+    else{fit="no";note="No safe way to use it on this area."}
+    if(s.throwing==="yes"&&tool==="cups"){fit="no";note="Skip cups on your throwing arm. Your team throwing program and athletic trainer come first.";items=[]}
+    if(s.when==="pre"&&tool!=="ball"&&fit!=="no"){fit="care";note="Save it for after you play. Before a game, stick to short ball rolls and your team warm-up. "+note}
+    return {tool,fit,note,items,inPlan:inPlan.has(tool)};
+  });
+}
+const FIT_LABEL={good:"Good fit",care:"Use with care",no:"Not for this area"};
+function techDetails(t,key){return `<details class="tech"><summary><span>${esc(t.n)}</span>${t.call?`<span class="call">${t.call}</span>`:""}</summary>
+  <div class="tech-body"><p class="setup">${t.setup}</p><ol>${t.steps.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>${t.call?videoBlock(t.call):""}${t.w?`<p class="watch"><b>Watch</b>${esc(t.w)}</p>`:""}<p class="meta">Time: ${esc(t.time)}</p></div></details>`}
+function showTools(){
+  clearOpts();
+  const s=S,area=areaById(s.area),opts=toolOptions(s);
+  let html=`<div class="bubble">Here's every tool in your bag for the ${esc(area.name.toLowerCase())}. Your plan above still comes first. These are extras if you want to do more.</div><div class="tools-list">`;
+  opts.forEach(o=>{html+=`<div class="tool-row fit-${o.fit}">
+    <div class="tool-top"><span class="tag ${o.tool}">${TOOLS[o.tool]}</span><span class="fit">${FIT_LABEL[o.fit]}</span>${o.inPlan?`<span class="inplan">In your plan</span>`:""}</div>
+    <p class="tool-note">${esc(o.note)}</p>${o.items.map(techDetails).join("")}</div>`});
+  html+=`</div>`;
+  const m=bot(html);
+  const a=document.createElement("div");a.className="opts";
+  a.innerHTML=`<button class="chip" type="button">Work on another area</button><button class="chip" type="button">Ask about something specific</button><button class="chip quiet" type="button">Start over</button>`;
+  a.children[0].onclick=()=>{me("Another area");const keep={when:S.when,time:S.time,start:S.start};S={...keep};history=[];next()};
+  a.children[1].onclick=()=>{me("Ask about something specific");requestFlow()};
+  a.children[2].onclick=startChat;m.appendChild(a);
+  scrollEnd(m);
+}
+
 /* ---------- Unlock ---------- */
 async function checkCode(raw){
   const v=raw.trim().toUpperCase().replace(/\s+/g,"");
@@ -594,10 +679,11 @@ function showPlan(){
   html+=`</div>`;
   const m=bot(html);
   const a=document.createElement("div");a.className="opts";
-  a.innerHTML=`<button class="chip" type="button">Work on another area</button><button class="chip" type="button">Ask about something specific</button><button class="chip quiet" type="button">Start over</button>`;
-  a.children[0].onclick=()=>{me("Another area");const keep={when:S.when,time:S.time,start:S.start};S={...keep};history=[];next()};
-  a.children[1].onclick=()=>{me("Ask about something specific");requestFlow()};
-  a.children[2].onclick=startChat;m.appendChild(a);
+  a.innerHTML=`<button class="chip" type="button">Use other tools</button><button class="chip" type="button">Work on another area</button><button class="chip" type="button">Ask about something specific</button><button class="chip quiet" type="button">Start over</button>`;
+  a.children[0].onclick=()=>{me("Use other tools");showTools()};
+  a.children[1].onclick=()=>{me("Another area");const keep={when:S.when,time:S.time,start:S.start};S={...keep};history=[];next()};
+  a.children[2].onclick=()=>{me("Ask about something specific");requestFlow()};
+  a.children[3].onclick=startChat;m.appendChild(a);
   m.querySelectorAll("[data-timer]").forEach(b=>b.addEventListener("click",()=>runTimer(b)));
   m.querySelectorAll("[data-done]").forEach(b=>b.addEventListener("click",()=>{document.getElementById("step"+b.dataset.done).classList.toggle("done")}));
   scrollEnd(m.querySelector(".plan-head"));
