@@ -214,6 +214,10 @@ p { margin: 0; text-wrap: pretty; }
 .area-move .tool-used { font-family: var(--font-display); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
 .area-move p { margin-top: 6px; }
 .area-move .time { font-family: var(--font-display); font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--heading); margin-top: 6px; }
+.video-note { display: flex; gap: 14px; align-items: flex-start; margin-top: 24px; padding: 16px 20px; border: 1px solid var(--line); border-radius: 16px; background: var(--band); max-width: 760px; }
+.video-note-icon { color: var(--brand-fill); flex: none; margin-top: 2px; }
+.video-note b { color: var(--heading); }
+.area-move .vid { margin-top: 8px; font-family: var(--font-display); font-size: 0.74rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
 .fieldguide { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px 28px; align-items: center; margin-top: 36px; background: var(--brand-fill); color: var(--on-fill); border-radius: 6px; padding: 22px 24px; }
 .fieldguide h3 { color: var(--on-fill); }
 .fieldguide p { color: var(--on-fill); opacity: 0.88; margin-top: 6px; }
@@ -809,15 +813,19 @@ details p { padding-bottom: 16px; max-width: 42em; }
       <div class="eyebrow">Basic moves by body area</div>
       <h2>One move for every spot</h2>
       <p class="lede" style="margin-top: 12px">Start here when one area is talking to you. Light pressure the first time, and stop if anything feels sharp.</p>
+      <div class="video-note">
+        <span class="video-note-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><circle cx="12" cy="12" r="11" fill="currentColor"/><path d="M10 8l6 4-6 4z" fill="#FFFFFF"/></svg></span>
+        <p><b>Video demos come with the kit.</b> Every move below has a step-by-step video in the online Field Guide. Once you have your Release Kit, scan card 8 and enter its code to watch them.</p>
+      </div>
       <div class="area-grid">
-        <div class="area-move"><span class="code">UB</span><div><h3>Upper back</h3><div class="tool-used">Peanut ball</div><p>On your back, knees bent, ball across your upper back with your spine in the gap. Hands behind your head, lift your hips a little and roll 2–3 inches at a time.</p><div class="time">60–90 sec</div></div></div>
-        <div class="area-move"><span class="code">LT</span><div><h3>Lats</h3><div class="tool-used">Peanut ball</div><p>Lie on your side, bottom arm straight overhead. Ball just below the armpit, toward your back. Roll down toward the bottom of your ribs and back. Stay off the armpit itself.</p><div class="time">60 sec a side</div></div></div>
-        <div class="area-move"><span class="code">FA</span><div><h3>Forearms</h3><div class="tool-used">Scraper</div><p>Forearm palm-up on your thigh, lotion on. Scraper at 30–45°, short strokes from wrist toward elbow, always the same direction. Skip the bony spots.</p><div class="time">30–60 sec an arm</div></div></div>
-        <div class="area-move"><span class="code">GL</span><div><h3>Glutes</h3><div class="tool-used">Peanut ball</div><p>Sit on one end of the ball under one glute, cross that ankle over the other knee and lean toward it. Hold tender spots or roll in small circles.</p><div class="time">60 sec a side</div></div></div>
-        <div class="area-move"><span class="code">HF</span><div><h3>Hip flexors</h3><div class="tool-used">Strap</div><p>Kneel on one knee (pad it). Squeeze that glute and shift your hips forward with your chest tall. Loop the strap on the back foot to pull it in for more.</p><div class="time">20–30 sec, 2x a side</div></div></div>
-        <div class="area-move"><span class="code">QD</span><div><h3>Quads</h3><div class="tool-used">Gliding cups</div><p>Oil on, half-squeeze a large cup above the knee and glide up toward the hip. Lift, return, three lines across the thigh. Stay off the kneecap.</p><div class="time">1–2 min a leg</div></div></div>
-        <div class="area-move"><span class="code">HM</span><div><h3>Hamstrings</h3><div class="tool-used">Strap</div><p>On your back, strap around the ball of one foot. Pull the straight leg up until you feel tension. Hold, then let it fall slightly in and out.</p><div class="time">20–30 sec, 2x a side</div></div></div>
-        <div class="area-move"><span class="code">CF</span><div><h3>Calves</h3><div class="tool-used">Scraper</div><p>Foot up on a bench, lotion on. Short strokes from above the ankle to below the knee. Stay off the shin bone and the back of the knee.</p><div class="time">30–60 sec a leg</div></div></div>
+        <div class="area-move"><span class="code">UB</span><div><h3>Upper back</h3><div class="tool-used">Peanut ball</div><p>On your back, knees bent, ball across your upper back with your spine in the gap. Hands behind your head, lift your hips a little and roll 2–3 inches at a time.</p><div class="time">60–90 sec</div><div class="vid">▶ Video demo with the kit</div></div></div>
+        <div class="area-move"><span class="code">LT</span><div><h3>Lats</h3><div class="tool-used">Peanut ball</div><p>Lie on your side, bottom arm straight overhead. Ball just below the armpit, toward your back. Roll down toward the bottom of your ribs and back. Stay off the armpit itself.</p><div class="time">60 sec a side</div><div class="vid">▶ Video demo with the kit</div></div></div>
+        <div class="area-move"><span class="code">FA</span><div><h3>Forearms</h3><div class="tool-used">Scraper</div><p>Forearm palm-up on your thigh, lotion on. Scraper at 30–45°, short strokes from wrist toward elbow, always the same direction. Skip the bony spots.</p><div class="time">30–60 sec an arm</div><div class="vid">▶ Video demo with the kit</div></div></div>
+        <div class="area-move"><span class="code">GL</span><div><h3>Glutes</h3><div class="tool-used">Peanut ball</div><p>Sit on one end of the ball under one glute, cross that ankle over the other knee and lean toward it. Hold tender spots or roll in small circles.</p><div class="time">60 sec a side</div><div class="vid">▶ Video demo with the kit</div></div></div>
+        <div class="area-move"><span class="code">HF</span><div><h3>Hip flexors</h3><div class="tool-used">Strap</div><p>Kneel on one knee (pad it). Squeeze that glute and shift your hips forward with your chest tall. Loop the strap on the back foot to pull it in for more.</p><div class="time">20–30 sec, 2x a side</div><div class="vid">▶ Video demo with the kit</div></div></div>
+        <div class="area-move"><span class="code">QD</span><div><h3>Quads</h3><div class="tool-used">Gliding cups</div><p>Oil on, half-squeeze a large cup above the knee and glide up toward the hip. Lift, return, three lines across the thigh. Stay off the kneecap.</p><div class="time">1–2 min a leg</div><div class="vid">▶ Video demo with the kit</div></div></div>
+        <div class="area-move"><span class="code">HM</span><div><h3>Hamstrings</h3><div class="tool-used">Strap</div><p>On your back, strap around the ball of one foot. Pull the straight leg up until you feel tension. Hold, then let it fall slightly in and out.</p><div class="time">20–30 sec, 2x a side</div><div class="vid">▶ Video demo with the kit</div></div></div>
+        <div class="area-move"><span class="code">CF</span><div><h3>Calves</h3><div class="tool-used">Scraper</div><p>Foot up on a bench, lotion on. Short strokes from above the ankle to below the knee. Stay off the shin bone and the back of the knee.</p><div class="time">30–60 sec a leg</div><div class="vid">▶ Video demo with the kit</div></div></div>
       </div>
       <div class="fieldguide">
         <div>
