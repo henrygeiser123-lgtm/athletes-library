@@ -236,6 +236,29 @@ body.locked .hero{padding-block:40px}
 /* Rules */
 .stopbox h3{color:var(--redtext)}
 footer{background:var(--band)}
+
+/* Locked screen: unlock + buy */
+.lock-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+.lock-card{max-width:none}
+.lock-h{font-size:clamp(22px,4vw,28px);letter-spacing:.03em;line-height:1.15}
+.buy{background:var(--band);border:1px solid var(--line);border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.buy-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:16px}
+.buy-list li{padding-left:18px;position:relative}
+.buy-list li::before{content:"";position:absolute;left:2px;top:.55em;width:8px;height:8px;background:var(--carolina);transform:rotate(45deg)}
+.buy-list b{color:var(--head)}
+.peek{position:relative;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px 16px 18px;overflow:hidden}
+.peek-top{display:flex;justify-content:space-between;align-items:center}
+.peek-title{font-family:var(--display);text-transform:uppercase;letter-spacing:.04em;font-weight:600;font-size:17px;color:var(--head);margin:10px 0 12px}
+.peek-line{height:10px;border-radius:999px;background:var(--line);margin-top:8px;filter:blur(1px)}
+.peek-line.short{width:62%}
+.peek-lock{position:absolute;inset:auto 0 0 0;height:62%;display:flex;align-items:flex-end;justify-content:center;gap:8px;padding-bottom:14px;background:linear-gradient(to bottom,rgba(255,255,255,0),rgba(255,255,255,.96) 55%);font-family:var(--display);text-transform:uppercase;letter-spacing:.12em;font-size:13px;color:var(--head)}
+.peek-ico{width:12px;height:10px;background:var(--navy);border-radius:2px;position:relative;margin-bottom:2px}
+.peek-ico::before{content:"";position:absolute;left:2px;top:-6px;width:8px;height:7px;border:2px solid var(--navy);border-bottom:0;border-radius:5px 5px 0 0;box-sizing:border-box}
+.buy-cta{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.buy-price{font-family:var(--display);text-transform:uppercase;letter-spacing:.1em;font-size:13px;color:var(--muted)}
+.buy .hint a{color:var(--deep)}
+@media (max-width:760px){.lock-grid{grid-template-columns:minmax(0,1fr)}}
+
 /* Demo videos */
 .vid-btn{display:flex;align-items:center;gap:10px;width:100%;min-height:48px;padding:0 16px;border:1.5px solid var(--line);border-radius:14px;background:var(--ice);color:var(--head);font-family:var(--display);text-transform:uppercase;letter-spacing:.1em;font-size:14px;font-weight:600;cursor:pointer}
 .vid-btn:hover{border-color:var(--carolina)}
@@ -270,18 +293,39 @@ footer{background:var(--band)}
 </header>
 
 <section class="lock" id="lockView">
-  <div class="wrap">
+  <div class="wrap lock-grid">
     <form class="lock-card" id="lockForm" novalidate>
       <div class="eyebrow">Unlock your guide</div>
-      <p>Enter the code printed on the Field Guide card in your Release Kit bag. You only have to do this once on this phone.</p>
+      <h2 class="lock-h">Have a Release Kit?</h2>
+      <p>Enter the code from the Smart Guide card in your bag. It's printed right above the QR code. You only have to do this once on each phone.</p>
       <label for="codeInput">Unlock code</label>
       <div class="code-row">
         <input id="codeInput" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXXXXXX" maxlength="20">
         <button class="btn btn-primary" type="submit">Unlock</button>
       </div>
       <p class="err" id="codeErr" aria-live="polite"></p>
-      <p class="hint">No card? The guide comes with every Release Kit. Questions: [YOURSITE.COM]</p>
     </form>
+
+    <aside class="buy" aria-labelledby="buyTitle">
+      <div class="eyebrow">Don't have a kit yet?</div>
+      <h2 class="lock-h" id="buyTitle">The Smart Guide comes with every Release Kit</h2>
+      <ul class="buy-list">
+        <li><b>A plan built for you.</b> Tap where it hurts and how it feels, and get a timed plan for the tools in your bag.</li>
+        <li><b>35 techniques</b> across 10 body areas, each with the setup and step-by-step instructions.</li>
+        <li><b>Safety built in.</b> Time limits for every tool, and it tells you when to see a trainer instead.</li>
+      </ul>
+      <div class="peek" aria-hidden="true">
+        <div class="peek-top"><span class="tag ball">Peanut ball</span><span class="call">UB-3</span></div>
+        <div class="peek-title">Wall pin and arm reach</div>
+        <div class="peek-line"></div><div class="peek-line short"></div><div class="peek-line"></div>
+        <div class="peek-lock"><span class="peek-ico"></span>Unlocks with your kit</div>
+      </div>
+      <div class="buy-cta">
+        <a class="btn btn-primary" href="../#release-kit">Get the Release Kit</a>
+        <span class="buy-price">$44.99 · Free US shipping</span>
+      </div>
+      <p class="hint">Cups, a steel scraper, a peanut ball and a stretch strap in one bag. <a href="../">Visit The Athlete's Library</a></p>
+    </aside>
   </div>
 </section>
 
@@ -329,7 +373,7 @@ footer{background:var(--band)}
 <footer>
   <div class="wrap">
     <div class="brand">The Athlete's Library · Vol. 1</div>
-    <p class="fine">Reviewed by [ATHLETIC TRAINER NAME, ATC]. Demo videos coming soon. [YOURSITE.COM] · [@YOURHANDLE]</p>
+    <p class="fine"><a href="../" style="color:var(--deep)">Shop the Release Kit</a> · Instagram @athletes.library</p>
     <p class="fine" style="margin-top:10px">Our products and guides are for general wellness and recovery. They are not medical devices and are not intended to diagnose, treat, cure or prevent any disease or injury. Check with a doctor or certified athletic trainer before starting, especially if you have a medical condition, are pregnant, or take blood thinners. Stop if you feel sharp pain. Kits are intended for athletes 13 and older; anyone under 18 should use them with a parent's permission.</p>
   </div>
 </footer>
