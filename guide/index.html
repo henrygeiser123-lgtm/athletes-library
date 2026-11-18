@@ -267,6 +267,30 @@ footer{background:var(--band)}
 .vid-thumb:hover .vid-play{background:var(--carolina)}
 .vid-label{position:absolute;left:14px;bottom:12px;z-index:1;color:#fff;font-family:var(--display);text-transform:uppercase;letter-spacing:.12em;font-size:13px;font-weight:600}
 
+
+/* Tool grid: green = use it, red = skip it */
+:root{--go:#2E7D4F;--gobg:#EEF8F1;--gofill:#2E7D4F}
+.tgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;width:100%}
+.tcard{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:14px 14px 16px;border-radius:18px;background:var(--card);border:2.5px solid var(--go);text-align:left;font:inherit;color:var(--ink);cursor:pointer;min-width:0}
+.tcard.ok:hover,.tcard.sel{background:var(--gobg)}
+.tcard.sel{box-shadow:0 0 0 3px rgba(46,125,79,.18)}
+.tcard.no{border-color:var(--redtext);background:var(--warnbg);cursor:default}
+.ticon svg{width:44px;height:44px;color:var(--navy)}
+.tcard.no .ticon svg{color:var(--redtext);opacity:.7}
+.tname{font-family:var(--display);text-transform:uppercase;letter-spacing:.06em;font-weight:600;font-size:17px;color:var(--head)}
+.tverdict{font-family:var(--display);text-transform:uppercase;letter-spacing:.1em;font-weight:600;font-size:13px;color:var(--go)}
+.tcard.no .tverdict{color:var(--redtext)}
+.tline{font-size:14px;color:var(--muted);line-height:1.35}
+.tcard.no .tline{color:var(--ink)}
+.tmark{position:absolute;top:12px;right:12px;width:28px;height:28px;border-radius:50%;background:var(--gofill)}
+.tmark::after{content:"";position:absolute;left:10px;top:6px;width:6px;height:12px;border:solid #fff;border-width:0 3px 3px 0;transform:rotate(45deg)}
+.tcard.no .tmark{background:var(--redtext)}
+.tcard.no .tmark::before,.tcard.no .tmark::after{content:"";position:absolute;left:13px;top:6px;width:3px;height:16px;background:#fff;border:0;border-radius:2px}
+.tcard.no .tmark::before{transform:rotate(45deg)}.tcard.no .tmark::after{transform:rotate(-45deg)}
+.tpanel{width:100%;background:var(--card);border:2px solid var(--go);border-radius:18px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.tpanel-head{display:flex;gap:10px;align-items:center}
+.tpanel-ok{font-family:var(--display);text-transform:uppercase;letter-spacing:.1em;font-size:12px;font-weight:600;color:var(--go)}
+
 /* Every tool for an area */
 .tools-list{display:flex;flex-direction:column;gap:10px;width:100%}
 .tool-row{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
@@ -509,21 +533,21 @@ const TOOL_ORDER_LIST=["ball","scraper","cups","strap"];
 /* Extra moves for tool + area pairs the 35 techniques don't cover.
    fit: "care" = fine with the limits listed, "no" = don't use it here. link = codes of existing techniques to show. */
 const EXTRA={
- "upper-back":{scraper:{fit:"no",note:"Skip the scraper here. Most of the upper back sits over the spine and shoulder blades, and you can't reach the rest safely on your own. The peanut ball does this job better."},
+ "upper-back":{scraper:{fit:"no",short:"Too close to the spine",note:"Skip the scraper here. Most of the upper back sits over the spine and shoulder blades, and you can't reach the rest safely on your own. The peanut ball does this job better."},
    strap:{fit:"care",note:"The strap can't reach the upper back itself, but opening the chest and lats next to it often helps it feel looser.",link:["CH-2","LT-2"]}},
  "lats":{scraper:{fit:"care",note:"Works best with a teammate. Light strokes on the muscle along your side only.",steps:{setup:"<b>Position:</b> lie on your side, top arm overhead. Lotion on the side of your back.",steps:["A teammate holds the scraper at 30–45°.","Short strokes from the bottom of the ribs up toward the armpit, one direction.","30–60 sec, then switch sides."],time:"30–60 sec a side",w:"Stay off the armpit and the bony edges of the ribs."}}},
  "shoulder":{scraper:{fit:"care",note:"Light pressure on the meaty part of the shoulder blade only, done by a teammate. Throwing arm: skip it unless your athletic trainer says it's fine.",steps:{setup:"<b>Position:</b> sitting or face down. Lotion on the back of the shoulder blade.",steps:["A teammate holds the scraper at 30–45°.","Short, light strokes across the flat part of the shoulder blade.","30–60 sec total."],time:"30–60 sec",w:"Never over the joint, the top of the shoulder or near the neck."}}},
  "chest":{cups:{fit:"care",note:"A small cup can glide on the chest muscle, below the collarbone and toward the shoulder.",steps:{setup:"<b>Position:</b> lying on your back or sitting. Oil first.",steps:["Light squeeze on a small cup.","Glide from the middle of the chest out toward the front of the shoulder.","Keep it moving."],time:"1 min a side",w:"Stay off the collarbone, breastbone and armpit."}},
    scraper:{fit:"care",note:"Light strokes on the chest muscle only.",steps:{setup:"<b>Position:</b> lying on your back. Lotion first.",steps:["Scraper at 30–45°.","Short strokes from the middle of the chest out toward the shoulder, below the collarbone.","30–60 sec a side."],time:"30–60 sec a side",w:"Stay off the collarbone, breastbone and armpit."}}},
  "forearms":{strap:{fit:"care",note:"Not really a strap area. A wall stretch does the same job with no tool.",steps:{setup:"<b>Position:</b> standing, arm straight out, palm flat on a wall with fingers pointing down.",steps:["Keep your elbow straight.","Lean gently until you feel the inside of the forearm stretch.","Hold, then turn the hand over (back of hand on the wall) for the top of the forearm."],time:"20–30 sec each way"}}},
- "glutes":{scraper:{fit:"no",note:"Skip it. The glutes are too thick for the scraper to do much. Use the peanut ball or cups instead."}},
+ "glutes":{scraper:{fit:"no",short:"Too thick for it to reach",note:"Skip it. The glutes are too thick for the scraper to do much. Use the peanut ball or cups instead."}},
  "hip-flexors":{ball:{fit:"care",note:"Use it on the front-outside of the hip, never in the crease. The crease and the inner groin have a big nerve and artery close to the surface.",steps:{setup:"<b>Position:</b> face down on your forearms. One end of the ball just below and to the outside of the bony point at the front of your hip.",steps:["Let some of your weight sink onto the ball. Start light.","Hold on a tight spot for 3–5 slow breaths, or make small rolls of an inch or two.","For more, bend that knee and slowly swing the foot side to side."],time:"60 sec a side",w:"Stay out of the hip crease and inner groin. A pulse, a zing or tingling means move off right away."}},
    cups:{fit:"care",note:"Glide cups on the top of the thigh just below the hip, the upper part of your quad. Never in the crease.",link:["QD-1"]},
    scraper:{fit:"care",note:"Scrape the upper third of the front of the thigh, stopping a hand's width below the crease.",link:["QD-3"]}},
  "hamstrings":{scraper:{fit:"care",note:"Easiest with a teammate while you lie face down.",steps:{setup:"<b>Position:</b> face down, or sitting on a chair edge with the leg straight. Lotion first.",steps:["Scraper at 30–45°.","Short strokes from just above the back of the knee up toward the glute.","Three lines: inside, middle, outside."],time:"30–60 sec a spot",w:"Never on the back of the knee."}}},
  "calves":{cups:{fit:"care",note:"A small cup can glide up the calf.",steps:{setup:"<b>Position:</b> sitting, foot up on a bench. Oil first.",steps:["Light squeeze on a small cup.","Glide from above the ankle up to below the knee.","Keep it moving."],time:"1 min a leg",w:"Stay off the shin bone and the back of the knee."}}},
  "lower-back":{ball:{fit:"care",note:"Not on the lower back itself. Roll the glutes and hips, which usually pull on it.",link:["GL-1","GL-2"]},
-   scraper:{fit:"no",note:"Never on the lower back. It sits right over the spine."},
+   scraper:{fit:"no",short:"Sits right over the spine",note:"Never on the lower back. It sits right over the spine."},
    cups:{fit:"care",note:"Not on the lower back. Static cups on the glutes are the closest safe spot.",link:["GL-4"]},
    strap:{fit:"care",note:"Stretch the hips and hamstrings, which pull on the lower back.",link:["HF-1","HM-1"]}}
 };
@@ -533,28 +557,47 @@ function toolOptions(s){
     let fit,note,items=[];
     const own=ALL.filter(t=>t.area===area&&t.t===tool);
     const ex=(EXTRA[area]||{})[tool];
+    let short="";
     if(own.length&&!ex){fit="good";note=`${own.length===1?"This move works":"These moves work"} on this area.`;items=own}
-    else if(ex){fit=ex.fit;note=ex.note;
+    else if(ex){fit=ex.fit;note=ex.note;short=ex.short||"";
       if(ex.link)items=ex.link.map(c=>ALL.find(t=>t.call===c)).filter(Boolean);
       if(ex.steps)items=[{...ex.steps,n:`${TOOLS[tool]} on the ${areaById(area).name.toLowerCase()}`,t:tool,call:null,f:[]}]}
-    else{fit="no";note="No safe way to use it on this area."}
-    if(s.throwing==="yes"&&tool==="cups"){fit="no";note="Skip cups on your throwing arm. Your team throwing program and athletic trainer come first.";items=[]}
+    else{fit="no";short="No safe way here";note="No safe way to use it on this area."}
+    if(s.throwing==="yes"&&tool==="cups"){fit="no";short="Not on your throwing arm";note="Skip cups on your throwing arm. Your team throwing program and athletic trainer come first.";items=[]}
     if(s.when==="pre"&&tool!=="ball"&&fit!=="no"){fit="care";note="Save it for after you play. Before a game, stick to short ball rolls and your team warm-up. "+note}
-    return {tool,fit,note,items,inPlan:inPlan.has(tool)};
+    return {tool,fit,short,note,items,inPlan:inPlan.has(tool),pre:s.when==="pre"&&tool!=="ball"};
   });
 }
 const FIT_LABEL={good:"Good fit",care:"Use with care",no:"Not for this area"};
 function techDetails(t,key){return `<details class="tech"><summary><span>${esc(t.n)}</span>${t.call?`<span class="call">${t.call}</span>`:""}</summary>
   <div class="tech-body"><p class="setup">${t.setup}</p><ol>${t.steps.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>${t.call?videoBlock(t.call):""}${t.w?`<p class="watch"><b>Watch</b>${esc(t.w)}</p>`:""}<p class="meta">Time: ${esc(t.time)}</p></div></details>`}
+const TOOL_ICON={
+ cups:'<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M7 25 C7 15 11 8 16 8 C21 8 25 15 25 25 Z M5 25 H27" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/></svg>',
+ scraper:'<svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 21 C10 12 20 8 28 10 L27 14 C19 13 11 17 7 23 Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>',
+ ball:'<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="11" cy="16" r="7" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="21" cy="16" r="7" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>',
+ strap:'<svg viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="10" width="9" height="12" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="11.5" y="10" width="9" height="12" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="21" y="10" width="9" height="12" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>'};
 function showTools(){
   clearOpts();
   const s=S,area=areaById(s.area),opts=toolOptions(s);
-  let html=`<div class="bubble">Here's every tool in your bag for the ${esc(area.name.toLowerCase())}. Your plan above still comes first. These are extras if you want to do more.</div><div class="tools-list">`;
-  opts.forEach(o=>{html+=`<div class="tool-row fit-${o.fit}">
-    <div class="tool-top"><span class="tag ${o.tool}">${TOOLS[o.tool]}</span><span class="fit">${FIT_LABEL[o.fit]}</span>${o.inPlan?`<span class="inplan">In your plan</span>`:""}</div>
-    <p class="tool-note">${esc(o.note)}</p>${o.items.map(techDetails).join("")}</div>`});
-  html+=`</div>`;
+  let html=`<div class="bubble">Every tool in your bag for the ${esc(area.name.toLowerCase())}. Green means you can use it, red means skip it. Tap a green tool to see the moves.</div><div class="tgrid">`;
+  opts.forEach((o,i)=>{const ok=o.fit!=="no";const n=o.items.length;
+    const sub=ok?(o.pre?"After you play":(o.fit==="care"?"Yes, with care":"Yes")):"Skip it";
+    const line=ok?`${n} move${n===1?"":"s"}${o.inPlan?" · In your plan":""}`:esc(o.short||"Not for this area");
+    html+=`<button type="button" class="tcard ${ok?"ok":"no"}" data-t="${i}" ${ok?"":"disabled"} aria-label="${TOOLS[o.tool]}: ${sub}">
+      <span class="tmark" aria-hidden="true"></span>
+      <span class="ticon">${TOOL_ICON[o.tool]}</span>
+      <span class="tname">${TOOLS[o.tool]}</span>
+      <span class="tverdict">${sub}</span>
+      <span class="tline">${line}</span></button>`});
+  html+=`</div><div class="tpanel" id="tpanel" hidden></div>`;
   const m=bot(html);
+  const panel=m.querySelector(".tpanel");
+  m.querySelectorAll(".tcard.ok").forEach(c=>c.addEventListener("click",()=>{
+    const o=opts[+c.dataset.t];
+    m.querySelectorAll(".tcard").forEach(x=>x.classList.toggle("sel",x===c));
+    panel.innerHTML=`<div class="tpanel-head"><span class="tag ${o.tool}">${TOOLS[o.tool]}</span><span class="tpanel-ok">${o.fit==="care"?"Use with care":"Good fit"}</span></div><p class="tool-note">${esc(o.note)}</p>${o.items.map(techDetails).join("")}`;
+    const first=panel.querySelector("details");if(first)first.open=true;
+    panel.hidden=false;scrollEnd(panel)}));
   const a=document.createElement("div");a.className="opts";
   a.innerHTML=`<button class="chip" type="button">Work on another area</button><button class="chip" type="button">Ask about something specific</button><button class="chip quiet" type="button">Start over</button>`;
   a.children[0].onclick=()=>{me("Another area");const keep={when:S.when,time:S.time,start:S.start};S={...keep};history=[];next()};
