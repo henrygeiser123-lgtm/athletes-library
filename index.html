@@ -227,12 +227,18 @@ p { margin: 0; text-wrap: pretty; }
 .parents-cta:hover .pc-go { background: var(--carolina); color: #1E2B48; }
 .pp-signup { margin: 28px auto 0; justify-content: center; text-align: left; }
 .pp-final .form-note { text-align: center; }
-.kit-hero { padding-block: 36px 40px; }
+.kit-hero { padding-block: 36px 28px; min-height: var(--hero-h, auto); display: flex; flex-direction: column; justify-content: center; gap: 28px; }
 .kit-hero .hero-grid { gap: 40px; }
-.kit-hero .bag { width: min(230px, 60vw); }
+.kit-hero .bag { width: min(260px, 60vw); }
 .kit-hero .bag-figure { gap: 8px; }
-.pp .pp-hero { padding-block: 34px 96px; border-top: 1px solid var(--line); background: var(--band); scroll-margin-top: 72px; }
-.pp-hero .pp-scrollcue { margin-top: 32px; }
+.pp .pp-hero { padding-block: clamp(80px, 11vw, 130px); border-top: 1px solid var(--line); background: var(--band); scroll-margin-top: 72px; }
+.learn-cue { align-self: center; display: flex; flex-direction: column; align-items: center; gap: 10px; text-decoration: none; color: var(--heading); margin-top: 8px; }
+.learn-cue:hover { color: var(--heading); }
+.learn-cue-text { font-family: var(--font-display); font-weight: 600; font-size: 1rem; letter-spacing: 0.22em; text-transform: uppercase; }
+.learn-cue-arrow { width: 56px; height: 56px; border-radius: 50%; background: var(--brand-fill); color: #FFFFFF; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px -10px rgba(30, 43, 72, 0.55); transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease; animation: cue-bob 2s ease-in-out infinite; }
+.learn-cue:hover .learn-cue-arrow { background: var(--carolina); color: #1E2B48; animation-play-state: paused; transform: translateY(3px); }
+@keyframes cue-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(7px); } }
+@media (prefers-reduced-motion: reduce) { .learn-cue-arrow { animation: none; } }
 .pp-statement-band { background: var(--bg); border-top: 0; }
 @media (max-width: 860px) {
   .kit-hero { padding-block: 24px 32px; }
@@ -747,7 +753,6 @@ details p { padding-bottom: 16px; max-width: 42em; }
         <p class="lede">Silicone cups, a steel scraper, a peanut ball and a stretch strap in one bag, with eight guide cards and a full online guide for a 15-minute routine you can run after any game.</p>
         <div class="btn-row">
           <a class="btn btn-primary" href="#release-kit">See the Release Kit</a>
-          <a class="btn btn-ghost" href="#home" data-scroll="story">Learn more <span aria-hidden="true">↓</span></a>
         </div>
         <div class="price-line">$44.99 · Free US shipping · Ages 13+</div>
       </div>
@@ -757,15 +762,18 @@ details p { padding-bottom: 16px; max-width: 42em; }
         <figcaption>The kit bag · 27 × 42 cm</figcaption>
       </figure>
     </div>
+    <a class="learn-cue" href="#home" data-scroll="story">
+      <span class="learn-cue-text">Learn more</span>
+      <span class="learn-cue-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M12 5v14M6 13l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </a>
   </div>
 
   <!-- 1. Peace of mind -->
   <div class="pp-hero" id="story">
     <div class="wrap">
-      <div class="eyebrow">Why it’s different</div>
-      <h2 class="pp-xl">Peace of mind<br>comes in the bag.</h2>
-      <p class="pp-sub">Four recovery tools, eight guide cards and a full online guide that spells out how to use each one safely. Everything an athlete needs, and everything a parent would want them to know.</p>
-      <div class="pp-scrollcue" aria-hidden="true">Scroll to see what’s inside ↓</div>
+      <div class="eyebrow rv">Why it’s different</div>
+      <h2 class="pp-xl rv" style="--d: 0.08s">Peace of mind<br>comes in the bag.</h2>
+      <p class="pp-sub rv" style="--d: 0.16s">Four recovery tools, eight guide cards and a full online guide that spells out how to use each one safely. Everything an athlete needs, and everything a parent would want them to know.</p>
     </div>
   </div>
 
@@ -1190,6 +1198,41 @@ details p { padding-bottom: 16px; max-width: 42em; }
   /* ---- Home: scroll story ---- */
   document.documentElement.classList.add('js');
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Release Kit hero fills the first screen
+  var kitHero = document.querySelector('.kit-hero');
+  var story = document.getElementById('story');
+  function sizeHero() {
+    if (!kitHero || kitHero.offsetParent === null) return;
+    var top = kitHero.getBoundingClientRect().top + window.scrollY;
+    document.documentElement.style.setProperty('--hero-h', Math.max(520, window.innerHeight - top) + 'px');
+  }
+  sizeHero();
+  window.addEventListener('resize', sizeHero);
+  window.addEventListener('hashchange', function () { setTimeout(sizeHero, 0); });
+
+  // First scroll down from the hero glides straight to the story
+  var gliding = false;
+  function inHero() {
+    if (!story || !kitHero || kitHero.offsetParent === null) return false;
+    return window.scrollY < story.getBoundingClientRect().top + window.scrollY - 80;
+  }
+  function glide() {
+    gliding = true;
+    story.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    setTimeout(function () { gliding = false; }, 900);
+  }
+  window.addEventListener('wheel', function (e) {
+    if (gliding) { if (inHero()) e.preventDefault(); return; }
+    if (e.deltaY > 4 && inHero()) { e.preventDefault(); glide(); }
+  }, { passive: false });
+  var touchY = null;
+  window.addEventListener('touchstart', function (e) { touchY = e.touches[0].clientY; }, { passive: true });
+  window.addEventListener('touchmove', function (e) {
+    if (touchY === null) return;
+    if (gliding) { if (inHero()) e.preventDefault(); return; }
+    if (touchY - e.touches[0].clientY > 24 && inHero()) { e.preventDefault(); touchY = null; glide(); }
+  }, { passive: false });
 
   // Smooth "Learn more" scroll to the story
   Array.prototype.forEach.call(document.querySelectorAll('[data-scroll]'), function (el) {
