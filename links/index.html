@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Come Along · The Athlete's Library</title>
+<meta name="description" content="Recovery gear that comes with the know-how. The website, the Smart Coach, and every account in one place.">
+<link rel="icon" href="../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400&display=swap">
+<style>
+:root { --navy:#1E2B48; --carolina:#7BAFD4; --deep:#2F6A97; --soft:#F3F8FC; --muted:#55607A; --sub:#C6D3E6; color-scheme: light; }
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--navy); color: #fff; font-family: "Source Serif 4", Georgia, serif; display: flex; flex-direction: column; overflow: hidden; }
+header { flex: none; display: flex; align-items: center; justify-content: center; gap: 12px; padding: max(22px, env(safe-area-inset-top)) 20px 6px; }
+header svg { width: 40px; height: 40px; border-radius: 50%; }
+header b { font: 600 15px "Oswald", sans-serif; letter-spacing: .2em; text-transform: uppercase; }
+.come { flex: none; text-align: center; font: 600 13px "Oswald", sans-serif; letter-spacing: .3em; text-transform: uppercase; color: var(--carolina); padding-top: 8px; }
+.track { flex: 1; min-height: 0; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.track::-webkit-scrollbar { display: none; }
+.slide { flex: none; width: 100%; scroll-snap-align: center; display: flex; flex-direction: column; justify-content: center; gap: 16px; padding: 14px max(26px, env(safe-area-inset-right)) 14px max(26px, env(safe-area-inset-left)); max-width: 100vw; }
+.slide > * { width: 100%; max-width: 420px; margin-left: auto; margin-right: auto; }
+.num { font: 600 13px "Oswald", sans-serif; letter-spacing: .24em; text-transform: uppercase; color: var(--carolina); }
+h1 { margin: 0; font: 700 46px/1 "Oswald", sans-serif; text-transform: uppercase; letter-spacing: .01em; }
+h1 em { font-style: normal; color: var(--carolina); }
+p { margin: 0; font-size: 18px; line-height: 1.45; color: var(--sub); }
+.art { height: 160px; border-radius: 18px; background: rgba(255,255,255,.06); border: 1.5px solid rgba(255,255,255,.14); display: grid; place-items: center; }
+.art svg { width: 84px; height: 84px; color: var(--carolina); }
+.btn { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; border-radius: 14px; background: var(--carolina); color: var(--navy); text-decoration: none; font: 600 17px "Oswald", sans-serif; letter-spacing: .12em; text-transform: uppercase; }
+.btn:focus-visible, .soc a:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.note { font: 500 13px "Oswald", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #9FB0CC; text-align: center; }
+.soc { display: flex; flex-direction: column; gap: 10px; }
+.soc a { display: flex; align-items: center; gap: 14px; min-height: 54px; padding: 0 18px; border-radius: 14px; background: var(--soft); color: var(--navy); text-decoration: none; font: 600 17px "Oswald", sans-serif; letter-spacing: .08em; text-transform: uppercase; }
+.soc a svg { width: 24px; height: 24px; flex: none; }
+.soc a span { flex: 1; }
+.soc a small { font: 400 13px "Source Serif 4", serif; letter-spacing: 0; text-transform: none; color: var(--muted); }
+footer { flex: none; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 6px 20px max(20px, env(safe-area-inset-bottom)); }
+.dots { display: flex; gap: 10px; }
+.dots button { width: 10px; height: 10px; border-radius: 50%; border: 0; padding: 0; background: rgba(255,255,255,.25); cursor: pointer; }
+.dots button.on { background: var(--carolina); width: 26px; border-radius: 5px; }
+.swipe { font: 500 12px "Oswald", sans-serif; letter-spacing: .2em; text-transform: uppercase; color: #8FA1BF; }
+@media (min-height: 760px) { .art { height: 200px; } h1 { font-size: 52px; } }
+</style>
+</head>
+<body>
+<header>
+  <svg viewBox="0 0 200 200" aria-hidden="true"><rect width="200" height="200" fill="#F3F8FC"/><g transform="translate(100 100) scale(1.15) translate(-101 -100)"><rect x="58" y="72" width="24" height="64" rx="2" fill="#1E2B48"/><rect x="58" y="82" width="24" height="4" fill="#F3F8FC"/><rect x="58" y="122" width="24" height="4" fill="#F3F8FC"/><rect x="86" y="56" width="24" height="80" rx="2" fill="#7BAFD4"/><rect x="86" y="68" width="24" height="4" fill="#F3F8FC"/><rect x="86" y="120" width="24" height="4" fill="#F3F8FC"/><g transform="rotate(-14 146 136)"><rect x="126" y="76" width="20" height="60" rx="2" fill="#1E2B48"/><rect x="126" y="88" width="20" height="4" fill="#F3F8FC"/><rect x="126" y="122" width="20" height="4" fill="#F3F8FC"/></g><rect x="46" y="138" width="110" height="7" rx="2" fill="#1E2B48"/></g></svg>
+  <b>The Athlete's Library</b>
+</header>
+<div class="come">Come along</div>
+
+<main class="track" id="track">
+  <section class="slide" aria-label="The website">
+    <div class="num">01 · The website</div>
+    <h1>Recovery gear that comes with <em>the know-how.</em></h1>
+    <div class="art"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M5 16 H27 M16 5 C12 9 12 23 16 27 C20 23 20 9 16 5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></div>
+    <p>See the Release Kit, what's inside, and the free guides.</p>
+    <a class="btn" href="../">Visit the website</a>
+  </section>
+
+  <section class="slide" aria-label="The Smart Coach">
+    <div class="num">02 · The Smart Coach</div>
+    <h1>A coach in your <em>pocket.</em></h1>
+    <div class="art"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="9" y="3" width="14" height="26" rx="3" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12.5 12 H19.5 M12.5 16 H17.5 M12.5 20 H18.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div>
+    <p>Tell it what hurts. Get a timed recovery plan in about 20 seconds.</p>
+    <a class="btn" href="../guide/">Try the Smart Coach</a>
+    <div class="note">Kit owners unlock it with the code on their card</div>
+  </section>
+
+  <section class="slide" aria-label="Follow along">
+    <div class="num">03 · Follow along</div>
+    <h1>Vol. 1 drops <em>preseason 2027.</em></h1>
+    <div class="soc">
+      <a href="https://www.instagram.com/athletes.library/" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="5" width="22" height="22" rx="7" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="16" r="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="22.5" cy="9.5" r="1.5" fill="currentColor"/></svg><span>Instagram</span><small>@athletes.library</small></a>
+      <a href="https://www.tiktok.com/@athletes.library" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M18 5 V20 A5 5 0 1 1 13 15 M18 5 C19 9 22 11 26 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>TikTok</span><small>@athletes.library</small></a>
+      <a href="https://www.youtube.com/@athletes.library" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="8" width="24" height="16" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M14 12.5 L19.5 16 L14 19.5 Z" fill="currentColor"/></svg><span>YouTube</span><small>@athletes.library</small></a>
+      <a href="https://www.facebook.com/profile.php?id=61596219332970" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11" fill="none" stroke="currentColor" stroke-width="2"/><path d="M18 27 V16 H22 M18 16 V13 C18 11 19 10 21 10 H22 M14 19 H22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Facebook</span><small>Athletes.library</small></a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="dots" id="dots"></div>
+  <div class="swipe">Swipe →</div>
+</footer>
+
+<script>
+const track = document.getElementById("track");
+const slides = [...track.children];
+const dots = document.getElementById("dots");
+slides.forEach((s, i) => {
+  const b = document.createElement("button");
+  b.type = "button"; b.setAttribute("aria-label", "Go to slide " + (i + 1));
+  b.addEventListener("click", () => track.scrollTo({ left: i * track.clientWidth, behavior: "smooth" }));
+  dots.appendChild(b);
+});
+function mark() {
+  const i = Math.round(track.scrollLeft / track.clientWidth);
+  [...dots.children].forEach((d, k) => d.classList.toggle("on", k === i));
+  document.querySelector(".swipe").style.visibility = i === slides.length - 1 ? "hidden" : "visible";
+}
+track.addEventListener("scroll", () => requestAnimationFrame(mark), { passive: true });
+addEventListener("resize", mark); mark();
+</script>
+</body>
+</html>
